@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random; //make it so that if they click too fast it doesn't mess with the audio //get rid of tell me when you show next exercise
+import java.util.Random;
 
 public class Intervals extends JFrame {
     private static int numOfCorrectAnswers, numOfExercises, numOfIncorrectAnswers, numOfTimesGivenUp;
@@ -41,9 +41,8 @@ public class Intervals extends JFrame {
         minor2.setBackground(Color.white);
         minor2.setFocusable(false);
         minor2.addActionListener(e -> {
-            usersAnswer = "minor 2";
-            if (noOfSemitones == 1) {
-                System.out.println("correct for minor 2");
+            usersAnswer = "minor 2"; //saves user answer for if they get it wrong
+            if (noOfSemitones == 1) { //checks if they are correct
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -64,7 +63,6 @@ public class Intervals extends JFrame {
         major2.addActionListener(e -> {
             usersAnswer = "major 2";
             if (noOfSemitones == 2) {
-                System.out.println("correct for major 2");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -85,7 +83,6 @@ public class Intervals extends JFrame {
         minor3.addActionListener(e -> {
             usersAnswer = "minor 3";
             if (noOfSemitones == 3) {
-                System.out.println("correct for minor 3");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -106,7 +103,6 @@ public class Intervals extends JFrame {
         major3.addActionListener(e -> {
             usersAnswer = "major 3";
             if (noOfSemitones == 4) {
-                System.out.println("correct for major 3");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -127,7 +123,6 @@ public class Intervals extends JFrame {
         perfect4.addActionListener(e -> {
             usersAnswer = "perfect 4";
             if (noOfSemitones == 5) {
-                System.out.println("correct for perfect 4");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -148,7 +143,6 @@ public class Intervals extends JFrame {
         perfect5.addActionListener(e -> {
             usersAnswer = "perfect 5";
             if (noOfSemitones == 7) {
-                System.out.println("correct for perfect 5");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -169,7 +163,6 @@ public class Intervals extends JFrame {
         minor6.addActionListener(e -> {
             usersAnswer = "minor 6";
             if (noOfSemitones == 8) {
-                System.out.println("correct for minor 6");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -190,7 +183,6 @@ public class Intervals extends JFrame {
         major6.addActionListener(e -> {
             usersAnswer = "major 6";
             if (noOfSemitones == 9) {
-                System.out.println("correct for major 6");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -211,7 +203,6 @@ public class Intervals extends JFrame {
         minor7.addActionListener(e -> {
             usersAnswer = "minor 7";
             if (noOfSemitones == 10) {
-                System.out.println("correct for minor 7");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -232,7 +223,6 @@ public class Intervals extends JFrame {
         major7.addActionListener(e -> {
             usersAnswer = "major 7";
             if (noOfSemitones == 11) {
-                System.out.println("correct for major 7");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -253,7 +243,6 @@ public class Intervals extends JFrame {
         perfectOctave.addActionListener(e -> {
             usersAnswer = "perfect octave";
             if (noOfSemitones == 12) {
-                System.out.println("correct for perfect octave");
                 try {
                     correct();
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -304,27 +293,27 @@ public class Intervals extends JFrame {
 
     public void tellAnswer() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         String intervalName = getIntervalName();
-        numOfTimesGivenUp++;
+        numOfTimesGivenUp++; //keeps track of the score
         numOfExercises++;
-        viewScore.setVisible(false);
+        viewScore.setVisible(false); //sets all the previous buttons visible to false
         tellMe.setVisible(false);
         correctMessage.setVisible(false);
         for (int i = 0; i < 11; i++) {
             intervalButtons[i].setVisible(false);
         }
 
+        //gives user the answer
         JLabel giveUpCorrectAnswer = new JLabel("Correct Answer: " + intervalName);
         giveUpCorrectAnswer.setFont(new Font("Rockwell", Font.PLAIN, 25));
         giveUpCorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
         giveUpCorrectAnswer.setBounds(150, 310, 600, 50);
 
         frame.add(giveUpCorrectAnswer);
-        nextExercise();
-
+        nextExercise(); //creates next exercise button
     }
 
     public void viewScore() {
-        staff.setVisible(false);
+        staff.setVisible(false); //sets all other buttons and labels visible to false
         replay.setVisible(false);
         viewScore.setVisible(false);
         tellMe.setVisible(false);
@@ -340,6 +329,7 @@ public class Intervals extends JFrame {
             intervalButtons[i].setVisible(false);
         }
 
+        //gives them their stats
         JLabel exercises = new JLabel("Exercises: " + numOfExercises);
         exercises.setHorizontalAlignment(SwingConstants.CENTER);
         exercises.setFont(new Font("Rockwell", Font.PLAIN, 20));
@@ -367,7 +357,7 @@ public class Intervals extends JFrame {
         earTraining.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
+                frame.dispose(); //disposes the frame and opens Ear Training
                 new EarTraining();
             }
         });
@@ -380,7 +370,7 @@ public class Intervals extends JFrame {
 
     }
 
-    public String getIntervalName() {
+    public String getIntervalName() { //converts the interval int into a string
         String intervalString;
         intervalString = switch (interval) {
             case 1 -> "minor second";
@@ -399,12 +389,14 @@ public class Intervals extends JFrame {
         return intervalString;
     }
     public void wrong() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        String intervalName = getIntervalName();
+        String intervalName = getIntervalName(); //gets the interval's name as a string so it can be given to the user
         numOfIncorrectAnswers++;
         numOfExercises++;
         for (int i = 0; i < 11; i++) {
             intervalButtons[i].setVisible(false);
         }
+
+        //labels to give the correct and incorrect answer
         incorrectAnswer = new JLabel("incorrect answer: " + usersAnswer);
         incorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
         incorrectAnswer.setFont(new Font("Rockwell", Font.PLAIN, 20));
@@ -421,10 +413,10 @@ public class Intervals extends JFrame {
     }
 
     public void correct() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        numOfCorrectAnswers++;
+        numOfCorrectAnswers++; //for the view score method
         numOfExercises++;
         for (int i = 0; i < 11; i++) {
-            intervalButtons[i].setVisible(false);
+            intervalButtons[i].setVisible(false); //sets all buttons visible to false to make room for the correct message
         }
         correctMessage.setFont(new Font("Gill Sans", Font.BOLD, 30));
         correctMessage.setForeground(new Color(0x32CD32));
@@ -434,26 +426,24 @@ public class Intervals extends JFrame {
         nextExercise();
     }
 
-    private void nextExercise() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    private void nextExercise() {
+        tellMe.setVisible(false); //sets the tell me button visible to false since pressing tell me would mess up the next interval
         nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
         nextExercise.setBackground(Color.white);
         nextExercise.setBounds(300, 410, 300, 90);
-        nextExercise.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    new Intervals();
-                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        nextExercise.addActionListener(e -> {
+            frame.dispose();
+            try {
+                new Intervals();  //reloads for a new question
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         frame.add(nextExercise);
     }
 
     public void chooseInterval() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        noOfSemitones = switch (interval) {
+        noOfSemitones = switch (interval) { //number of semitones helps place the next note since the interval does not correspond to the number of semitones
             case 1 -> //minor 2
                     1;
             case 2 -> //major 2
@@ -479,32 +469,25 @@ public class Intervals extends JFrame {
             default -> noOfSemitones;
         };
 
-        secondNote = bassNote + noOfSemitones;
+        secondNote = bassNote + noOfSemitones; //gets note name of the second note. Refer to notes for the full list
         secondNoteOctave = octave;
-        System.out.println("octave: " + octave + " bass note: " + bassNote);
-        if (secondNote > 12) { //need to find a place to set the secondNoteOctave
-            secondNote -= 12;
+        if (secondNote > 12) {
+            secondNote -= 12; //note names only go up until 12 so it has to reset and adds another octave
             secondNoteOctave = octave + 1;
-             //atp you should have octave, bassnote, secondNote, and secondNoteOctave
-            if (secondNoteOctave > 3) { //cannot be greater than 3 or else it will be off the staff
-                System.out.println("this is my problem");
+            if (secondNoteOctave > 3) { //octave cannot be greater than 3 or else it will be off the staff, so I move it down
                 octave--;
                 secondNoteOctave--;
-            } //test interval 10, octave 3, bassNote 3
-        } //need to come back to the if below this one
-        if (octave == 2 && bassNote < 7 && secondNote >= 7 || octave == 2 && bassNote < 7 && secondNote < 7 && secondNoteOctave == 3) { // has to stay on one clef, and going up from c just doesn't work in bass cleff
-            System.out.println("this is my problem pt.2"); //could make this a huge while loop
+            }
+        }
+        if (octave == 2 && bassNote < 7 && secondNote >= 7 || octave == 2 && bassNote < 7 && secondNote < 7 && secondNoteOctave == 3) { // has to stay on one clef, and going up from c just doesn't work in bass clef
             octave--;
             secondNoteOctave--; //moving them all down an octave so they fit on one staff
         }
-        if (octave == 1 && bassNote >= 7 && bassNote <= 12 && secondNote > 6 && secondNoteOctave == 2) { //might want to think this through
+        if (octave == 1 && bassNote >= 7 && bassNote <= 12 && secondNote > 6 && secondNoteOctave == 2) { //straddles the 2 clefs so it moves the interval up an octave
             octave++;
             secondNoteOctave++;
         }
-        System.out.println(interval + " " + noOfSemitones + " " + octave + " " + bassNote + " " + secondNote + " " + secondNoteOctave);
-        System.out.println("octave: " + octave + " bass note: " + bassNote + " second note: " + secondNote);
-
-        saveBassNote = bassNote;
+        saveBassNote = bassNote; //saving variables for playing the notes
         saveOctave = octave;
         saveTopNote = secondNote;
         saveSecondNoteOctave = secondNoteOctave;
@@ -513,7 +496,7 @@ public class Intervals extends JFrame {
     }
 
     private void setStaff(int octave, int bassNote) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        System.out.println("this should print out 2 times");
+    //sets the clef depending on the notes
         if (octave == 1 || octave == 2 && secondNote <= 6 && secondNoteOctave != 3) {
             ImageIcon bassClef = new ImageIcon("src/bassClef.jpg");
             JLabel bassClef2 = new JLabel(bassClef);
@@ -531,13 +514,12 @@ public class Intervals extends JFrame {
         getBassNote(octave, bassNote);
     }
     public void getBassNote(int octave, int bassNote) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
+        //just redirects the bassNote to its method
         switch (bassNote) {
             case 1:
                 Gs(octave, 0, 0);
                 break;
             case 2, 4, 7, 9, 12:
-                System.out.println("smiley face");
                 choosingSharpOrFlatBassNote(octave, bassNote);
                 break;
             case 3:
@@ -562,20 +544,18 @@ public class Intervals extends JFrame {
     }
 
     public void Gs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        //sets the bounds of the note and changes the note depending on
         if (octave == 1) {
             wholeNote2.setBounds(230, 159, 33, 23);
-            System.out.println("G2");
             staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) { //could take these ifs outside the octave ifs so that it is more efficient
-                bassNote = 2; //Gb cannot exist
+            if(sharp == 1) {
+                bassNote = 2; //Gb cannot exist in this octave
             } else { //else is there to ensure the correct number is passed in
                 bassNote = 1;
             }
-            System.out.println(bassNote);
             octave1NotesIntervals(bassNote);
         } else if (octave == 2) {
             wholeNote2.setBounds(230, 70, 33, 23);
-            System.out.println("G3");
             staff.add(wholeNote2, Integer.valueOf(1));
             if(sharp == 1) {
                 bassNote = 2;
@@ -584,7 +564,6 @@ public class Intervals extends JFrame {
             } else {
                 bassNote = 1;
             }
-            System.out.println(bassNote);
             if(bassNote == 12) {
                 octave1NotesIntervals(12);
             } else {
@@ -592,7 +571,6 @@ public class Intervals extends JFrame {
             }
         } else if (octave == 3) {
             wholeNote2.setBounds(150, 99, 33, 23);
-            System.out.println("G4");
             staff.add(wholeNote2, Integer.valueOf(1));
             if(sharp != 0) {
                 bassNote = 2;
@@ -601,7 +579,6 @@ public class Intervals extends JFrame {
             } else {
                 bassNote = 1;
             }
-            System.out.println(bassNote);
             if (bassNote == 12) {
                 octave2NotesIntervals(12);
             } else {
@@ -609,7 +586,6 @@ public class Intervals extends JFrame {
             }
         } else if (octave == 4) { //always going to be a g flat
             wholeNote2.setBounds(150, 21, 33, 23);
-            System.out.println("G5 for the flat");
             staff.add(wholeNote2, Integer.valueOf(1));
             octave3NotesIntervals(12);
         }
@@ -617,7 +593,7 @@ public class Intervals extends JFrame {
     }
 
     public void octave3NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        File g4 = new File("src/g4.wav");
+        File g4 = new File("src/g4.wav"); //creating the files
         File gSharp4 = new File("src/gSharp4.wav");
         File a4 = new File("src/a4.wav");
         File aSharp4 = new File("src/aSharp4.wav");
@@ -630,36 +606,35 @@ public class Intervals extends JFrame {
         File f5 = new File("src/f5.wav");
         File fSharp5 = new File("src/fSharp5.wav");
 
-        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5};
+        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5}; //putting the files into an array so that its easier to make them an audioStream
         AudioInputStream[] audioStream = new AudioInputStream[12];
 
-        for(int i = 0; i < 12; i++) {
+        for(int i = 0; i < 12; i++) { //getting the audio input stream
             audioStream[i] = AudioSystem.getAudioInputStream(thirdOctaveNotes[i]);
         }
 
         Clip clip3 = AudioSystem.getClip();
-        clip3.open(audioStream[bassNote - 1]);
+        clip3.open(audioStream[bassNote - 1]); //opening the correct clip at the correct index
         clip3.start();
         ActionListener taskPerformer = e -> {
-            System.out.println("y is this useless");
             try {
                 playSecondNote();
             } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                 throw new RuntimeException(ex);
             }
         };
-        Timer timer = new Timer(1655, taskPerformer);//this is going to make it go forever ;(
+        Timer timer = new Timer(1655, taskPerformer);// waiting 1.655 seconds before playing the next note since all the audio files are 1.655 seconds
         timer.setRepeats(false);
-        if(controlTimer == 1) {
+        if(controlTimer == 1) { //control timer ensures that the computer knows to stop after playing both notes once
             controlTimer++;
             timer.start();
         }
     }
 
     public void playSecondNote() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        switch(saveTopNote) {
+        switch(saveTopNote) { //
             case 1: //all for Gs
-                if (saveSecondNoteOctave == 2) { //there is no perfect 1 in my program so
+                if (saveSecondNoteOctave == 2) { //there is no perfect 1 in my program so save second octave will not be in octave 1
                     octave2NotesIntervals(1);
                 } else if (saveSecondNoteOctave == 3) {
                     octave3NotesIntervals(1);

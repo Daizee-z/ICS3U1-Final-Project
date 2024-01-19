@@ -1,6 +1,6 @@
 package org.example; //COMMENTS COMPLETE, NEED TO DELETE SYSTEM.OUT.PRINTLN
 import javax.swing.*;
-import java.awt.*; //whole note, undo then quarter rest, and half rest didn't work
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -52,6 +52,9 @@ public class RhythmCreator extends JFrame {
         home.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         home.setBackground(Color.white);
         home.setBounds(700, 100, 100, 60);
+        home.setBackground(new Color(0x97f0ff));
+        home.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        home.setForeground(new Color(0x006874));
         home.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,14 +66,17 @@ public class RhythmCreator extends JFrame {
         JLabel title = new JLabel("Rhythm Creator");
         title.setFont(new Font("Rockwell", Font.BOLD, 50));
         title.setBounds(251, 80, 398, 100);
+        title.setForeground(new Color(0x006874));
 
 
         JLabel timeSignatureLabel = new JLabel("Time Signature:");
         timeSignatureLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         timeSignatureLabel.setBounds(300, 187, 200, 50);
+        timeSignatureLabel.setForeground(new Color(0x006874));
 
         notesAndRestsLabel.setBounds(280, 200, 166, 30);
         notesAndRestsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        notesAndRestsLabel.setForeground(new Color(0x006874));
 
         String[] timeSignatureChoices = {"", "2/4", "4/4"};
         JComboBox<String> timeSignatures = new JComboBox<>(timeSignatureChoices);
@@ -80,7 +86,9 @@ public class RhythmCreator extends JFrame {
         JButton continueButton = new JButton("continue");
         continueButton.setFocusable(false);
         continueButton.setBounds(400, 400, 100, 60);
-        continueButton.setBackground(Color.white);
+        continueButton.setBackground(new Color(0x97f0ff));
+        continueButton.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        continueButton.setForeground(new Color(0x006874));
         continueButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         continueButton.addActionListener(new ActionListener() {
             @Override
@@ -125,10 +133,12 @@ public class RhythmCreator extends JFrame {
         chooseYourRhythm.setVisible(false);
         chooseYourRhythm.setEditable(true);
 
-        previousRhythms.setBackground(Color.white);
         previousRhythms.setFocusable(false);
         previousRhythms.setBounds(75, 400, 150, 60);
         previousRhythms.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        previousRhythms.setBackground(new Color(0x97f0ff));
+        previousRhythms.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        previousRhythms.setForeground(new Color(0x006874));
         previousRhythms.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,23 +157,33 @@ public class RhythmCreator extends JFrame {
                     temp += key + "\n";
                 }
                 rhythmList.setText(temp);
-                rhythmCreatorButton.setBounds(75, 100, 150, 60);
-                rhythmCreatorButton.setBackground(Color.white);
-                rhythmCreatorButton.setFocusable(false);
-                rhythmCreatorButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        frame.dispose();
-                        new RhythmCreator();
-                    }
-                });
-                frame.add(rhythmCreatorButton);
+                previousRhythms.setVisible(false);
+                }
+        });
+
+        rhythmCreatorButton.setBounds(75, 100, 150, 60);
+        rhythmCreatorButton.setBackground(Color.white);
+        rhythmCreatorButton.setFocusable(false);
+        rhythmCreatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        rhythmCreatorButton.setBackground(new Color(0x97f0ff));
+        rhythmCreatorButton.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        rhythmCreatorButton.setForeground(new Color(0x006874));
+        rhythmCreatorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("BRO");
+                frame.dispose();
+                new RhythmCreator();
             }
         });
+
 
         next.setBackground(Color.white);
         next.setVisible(false);
         next.setFocusable(false);
+        next.setBackground(new Color(0x97f0ff));
+        next.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        next.setForeground(new Color(0x006874));
         next.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         next.setBounds(700, 400, 100, 60);
         next.addActionListener(new ActionListener() {
@@ -208,6 +228,7 @@ public class RhythmCreator extends JFrame {
             }
         });
 
+        frame.add(rhythmCreatorButton);
         frame.add(home);
         frame.add(next);
         frame.add(typeInYourRhythmNameLabel);
@@ -315,8 +336,11 @@ System.out.println("alarm clock " + whereIsThisFrom);
 
         //save button to save your new rhyth,
         save.setBounds(580, 400, 100, 60);
-        save.setBackground(Color.white);
         save.setFocusable(false);
+        save.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        save.setBackground(new Color(0x97f0ff));
+        save.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        save.setForeground(new Color(0x006874));
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -342,7 +366,9 @@ System.out.println("alarm clock " + whereIsThisFrom);
 
         add.setFocusable(false);
         add.setBounds(350, 400, 100, 60);
-        add.setBackground(Color.white);
+        add.setBackground(new Color(0x97f0ff));
+        add.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        add.setForeground(new Color(0x006874));
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -351,7 +377,9 @@ System.out.println("alarm clock " + whereIsThisFrom);
         });
 
         undo.setFocusable(false);
-        undo.setBackground(Color.white);
+        undo.setBackground(new Color(0x97f0ff));
+        undo.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
+        undo.setForeground(new Color(0x006874));
         undo.setBounds(450, 400, 100, 60);
         undo.addActionListener(new ActionListener() {
             @Override

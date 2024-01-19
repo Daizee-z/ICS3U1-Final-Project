@@ -11,8 +11,6 @@ public class Main extends JFrame /*implements ActionListener*/{
 
     public static void main(String[] args) {
 
-        //new Notes(); why doesn't this work
-        //new EarTraining();
         new HomeScreen();
         //new RhythmCreator();
         //new setUp();
