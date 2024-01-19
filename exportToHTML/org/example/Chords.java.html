@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Chords.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Chords.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">org</span><span class="s2">.</span><span class="s1">example</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">sound</span><span class="s2">.</span><span class="s1">sampled</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Random</span><span class="s2">;</span>
+
+
+<span class="s0">public class </span><span class="s1">Chords </span><span class="s0">extends </span><span class="s1">JFrame</span><span class="s2">{</span>
+<span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">();</span>
+<span class="s1">Random rand </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+<span class="s0">int </span><span class="s1">chordQuality </span><span class="s2">= </span><span class="s1">rand</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">1</span><span class="s2">, </span><span class="s3">5</span><span class="s2">), </span><span class="s1">root </span><span class="s2">= </span><span class="s1">rand</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">1</span><span class="s2">, </span><span class="s3">13</span><span class="s2">), </span><span class="s1">absoluteThirdNote</span><span class="s2">, </span><span class="s1">absoluteFifthNote</span><span class="s2">, </span><span class="s1">thirdsSemitone</span><span class="s2">, </span><span class="s1">fifthsSemitone</span><span class="s2">;</span>
+<span class="s1">JLayeredPane staff </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLayeredPane</span><span class="s2">();</span>
+
+   <span class="s0">public </span><span class="s1">Chords</span><span class="s2">() {</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s3">900</span><span class="s2">, </span><span class="s3">780</span><span class="s2">);</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Daisy's Ear Training Course&quot;</span><span class="s2">);</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+   <span class="s2">}</span>
+   <span class="s0">public void </span><span class="s1">getAllNotes</span><span class="s2">() {</span>
+       
+
+       <span class="s5">/*Chord Qualities 
+       1 = diminish 
+       2 = minor 
+       3 = major 
+       4 = augmented*/</span>
+
+       <span class="s0">if </span><span class="s2">(</span><span class="s1">chordQuality </span><span class="s2">== </span><span class="s3">1</span><span class="s2">) {</span>
+           <span class="s1">thirdsSemitone </span><span class="s2">= </span><span class="s3">3</span><span class="s2">;</span>
+           <span class="s1">fifthsSemitone </span><span class="s2">= </span><span class="s3">6</span><span class="s2">;</span>
+       <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">chordQuality </span><span class="s2">== </span><span class="s3">2</span><span class="s2">) {</span>
+           <span class="s1">thirdsSemitone </span><span class="s2">= </span><span class="s3">3</span><span class="s2">;</span>
+           <span class="s1">fifthsSemitone </span><span class="s2">= </span><span class="s3">7</span><span class="s2">;</span>
+       <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">chordQuality </span><span class="s2">== </span><span class="s3">3</span><span class="s2">) {</span>
+           <span class="s1">thirdsSemitone </span><span class="s2">= </span><span class="s3">4</span><span class="s2">;</span>
+           <span class="s1">fifthsSemitone </span><span class="s2">= </span><span class="s3">7</span><span class="s2">;</span>
+       <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+           <span class="s1">thirdsSemitone </span><span class="s2">= </span><span class="s3">4</span><span class="s2">;</span>
+           <span class="s1">fifthsSemitone </span><span class="s2">= </span><span class="s3">8</span><span class="s2">;</span>
+       <span class="s2">}</span>
+
+       <span class="s1">absoluteThirdNote </span><span class="s2">= </span><span class="s1">root </span><span class="s2">+ </span><span class="s3">2</span><span class="s2">;</span>
+       <span class="s1">absoluteFifthNote </span><span class="s2">= </span><span class="s1">root </span><span class="s2">+ </span><span class="s3">4</span><span class="s2">; </span><span class="s5">//need to make this into an actual note w/ the octave and have it reset once it reaches 12</span>
+  
+   <span class="s2">}</span>
+   <span class="s0">public void </span><span class="s1">setStaff</span><span class="s2">() { </span><span class="s5">//should find a way to reuse the methods in other classes</span>
+        <span class="s5">//Intervals.setStaff();</span>
+       <span class="s0">if </span><span class="s2">(</span><span class="s1">octave </span><span class="s2">== </span><span class="s3">1 </span><span class="s2">|| </span><span class="s1">octave </span><span class="s2">== </span><span class="s3">2 </span><span class="s2">&amp;&amp; </span><span class="s1">secondNote </span><span class="s2">&lt;= </span><span class="s3">6 </span><span class="s2">&amp;&amp; </span><span class="s1">secondNoteOctave </span><span class="s2">!= </span><span class="s3">3</span><span class="s2">) {</span>
+           <span class="s1">ImageIcon bassClef </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s4">&quot;src/bassClef.jpg&quot;</span><span class="s2">);</span>
+           <span class="s1">JLabel bassClef2 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s1">bassClef</span><span class="s2">);</span>
+           <span class="s1">bassClef2</span><span class="s2">.</span><span class="s1">setBounds</span><span class="s2">(</span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">600</span><span class="s2">, </span><span class="s3">223</span><span class="s2">); </span><span class="s5">//could change to 223 so it matches treble but would have to adjust all of the bass clef notes</span>
+           <span class="s1">staff</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">bassClef2</span><span class="s2">, </span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s3">0</span><span class="s2">));</span>
+           <span class="s1">staff</span><span class="s2">.</span><span class="s1">setBounds</span><span class="s2">(</span><span class="s3">75</span><span class="s2">, </span><span class="s3">50</span><span class="s2">, </span><span class="s3">530</span><span class="s2">, </span><span class="s3">210</span><span class="s2">); </span><span class="s5">//width use to be 550 if anything happens</span>
+       <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">octave </span><span class="s2">== </span><span class="s3">2 </span><span class="s2">&amp;&amp; </span><span class="s1">bassNote </span><span class="s2">&gt; </span><span class="s3">6 </span><span class="s2">|| </span><span class="s1">octave </span><span class="s2">== </span><span class="s3">3 </span><span class="s2">|| </span><span class="s1">octave </span><span class="s2">== </span><span class="s3">2 </span><span class="s2">&amp;&amp; </span><span class="s1">bassNote </span><span class="s2">== </span><span class="s3">6</span><span class="s2">) {</span>
+           <span class="s1">ImageIcon trebleClef </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s4">&quot;src/treble-clef.jpg&quot;</span><span class="s2">);</span>
+           <span class="s1">JLabel trebleClef2 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s1">trebleClef</span><span class="s2">);</span>
+           <span class="s1">trebleClef2</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s3">600</span><span class="s2">, </span><span class="s3">229</span><span class="s2">); </span><span class="s5">//one below 600 x 223</span>
+           <span class="s1">trebleClef2</span><span class="s2">.</span><span class="s1">setBounds</span><span class="s2">(</span><span class="s3">0</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s3">600</span><span class="s2">, </span><span class="s3">223</span><span class="s2">);</span><span class="s5">//they height and width do not match bc its cropped</span>
+           <span class="s1">staff</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">trebleClef2</span><span class="s2">, </span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s3">0</span><span class="s2">));</span>
+           <span class="s1">staff</span><span class="s2">.</span><span class="s1">setBounds</span><span class="s2">(</span><span class="s3">75</span><span class="s2">, </span><span class="s3">50</span><span class="s2">, </span><span class="s3">530</span><span class="s2">, </span><span class="s3">210</span><span class="s2">);</span>
+       <span class="s2">}</span>
+       <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">staff</span><span class="s2">);</span>
+
+   <span class="s2">}</span>
+
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
