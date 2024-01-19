@@ -14,7 +14,7 @@ import static org.example.Notes.*;
 public class Chords extends JFrame{
 JFrame frame = new JFrame();
 Random rand = new Random();
-int chordQuality = 4/*rand.nextInt(1, 5)*/, root = rand.nextInt(1, 13), rootName = 0, thirdNoteOctave = 0, fifthNoteOctave = 0, thirdsSemitone = 0, fifthsSemitone = 0, absoluteThirdNote = 0, absoluteFifthNote = 0, third = 0, fifth = 0, octave = rand.nextInt(1, 4), saveRoot = 0;
+int chordQuality = rand.nextInt(1, 5), root = rand.nextInt(1, 13), rootName = 0, thirdNoteOctave = 0, fifthNoteOctave = 0, thirdsSemitone = 0, fifthsSemitone = 0, absoluteThirdNote = 0, absoluteFifthNote = 0, third = 0, fifth = 0, octave = rand.nextInt(1, 4), saveRoot = 0;
 public static int numOfCorrectAnswers, numOfExercises, numOfIncorrectAnswers;
 JLayeredPane staff = new JLayeredPane();
 ImageIcon wholeNote = new ImageIcon("src/wholeNoteTC.png");
