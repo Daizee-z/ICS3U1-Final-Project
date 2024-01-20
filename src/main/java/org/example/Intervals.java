@@ -22,7 +22,7 @@ public class Intervals extends JFrame {
     JButton[] intervalButtons = {minor2, major2, minor3, major3, perfect4, perfect5, minor6, major6, minor7, major7, perfectOctave};
     String usersAnswer;
     public static ImageIcon sharp = new ImageIcon("src/sharpSignTC.png"), middleCTC = new ImageIcon("src/middleCTC.png");
-    public static JLabel sharp2 = new JLabel(sharp), middleCTC2 = new JLabel(middleCTC);;
+    public static JLabel sharp2 = new JLabel(sharp), middleCTC2 = new JLabel(middleCTC);
     public static ImageIcon flatTC = new ImageIcon("src/flatSignTC.png");
     public static JLabel flatTC2 = new JLabel(flatTC);
     public Intervals() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
@@ -354,12 +354,9 @@ public class Intervals extends JFrame {
         earTraining.setBounds(300, 410, 300, 90);
         earTraining.setForeground(new Color(0x5954a8));
         earTraining.setBackground(Color.WHITE);
-        earTraining.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); //disposes the frame and opens Ear Training
-                new EarTraining();
-            }
+        earTraining.addActionListener(e -> {
+            frame.dispose(); //disposes the frame and opens Ear Training
+            new EarTraining();
         });
 
         frame.add(earTraining);

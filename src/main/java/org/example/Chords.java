@@ -229,15 +229,12 @@ String userAnswer;
         nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
         nextExercise.setBounds(300, 410, 300, 90);
         nextExercise.setBackground(Color.white);
-        nextExercise.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    new Chords(); //reloads the class, therefore new exercise
-                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        nextExercise.addActionListener(e -> {
+            frame.dispose();
+            try {
+                new Chords(); //reloads the class, therefore new exercise
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
         frame.add(nextExercise);
