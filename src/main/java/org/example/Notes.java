@@ -1058,7 +1058,9 @@ public class Notes extends JFrame {
         nextExercise();
     }
     public void nextExercise() { //creates a button that says next exercise and disposes the old frame, so a new one can load with a new question
-        nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
+         tellMe.setVisible(false);
+         
+         nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
         nextExercise.setBounds(300, 410, 300, 90);
         nextExercise.setFocusable(false);
         nextExercise.setBackground(Color.white);

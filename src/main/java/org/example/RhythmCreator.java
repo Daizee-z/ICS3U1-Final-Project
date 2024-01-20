@@ -1,4 +1,4 @@
-package org.example; //COMMENTS COMPLETE, NEED TO DELETE SYSTEM.OUT.PRINTLN
+package org.example; //COMMENTS COMPLETE AND SO ARE THE PRINTLNS
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +34,6 @@ public class RhythmCreator extends JFrame {
     JLabel eighthNoteWithFlag2, halfNote2, quarterRest2, quarterNote2, eighthRest2, halfRest2, wholeRest2, wholeNote2, notesAndRestsLabel = new JLabel("Notes and Rests:");
     String placingNotesOnStaff;
     JButton save = new JButton("save"), undo = new JButton("undo"), add = new JButton("add"), previousRhythms = new JButton("previous rhythms"), rhythmCreatorButton = new JButton("rhythm creator"), next = new JButton("next");;
-
     public RhythmCreator() {
         //setting up the jframe---------------------------------
         frame.setSize(900, 650);
@@ -50,11 +49,10 @@ public class RhythmCreator extends JFrame {
         JButton home = new JButton("home");
         home.setFocusable(false);
         home.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        home.setBackground(Color.white);
+        home.setBackground(new Color(0xcde7ec));
         home.setBounds(700, 100, 100, 60);
-        home.setBackground(new Color(0x97f0ff));
         home.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        home.setForeground(new Color(0x006874));
+        home.setForeground(new Color(0x4a6267));
         home.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +74,7 @@ public class RhythmCreator extends JFrame {
 
         notesAndRestsLabel.setBounds(280, 200, 166, 30);
         notesAndRestsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        notesAndRestsLabel.setForeground(new Color(0x006874));
+        notesAndRestsLabel.setForeground(new Color(0x4a6267));
 
         String[] timeSignatureChoices = {"", "2/4", "4/4"};
         JComboBox<String> timeSignatures = new JComboBox<>(timeSignatureChoices);
@@ -86,9 +84,9 @@ public class RhythmCreator extends JFrame {
         JButton continueButton = new JButton("continue");
         continueButton.setFocusable(false);
         continueButton.setBounds(400, 400, 100, 60);
-        continueButton.setBackground(new Color(0x97f0ff));
+        continueButton.setBackground(new Color(0xcde7ec));
         continueButton.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        continueButton.setForeground(new Color(0x006874));
+        continueButton.setForeground(new Color(0x4a6267));
         continueButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
         continueButton.addActionListener(new ActionListener() {
             @Override
@@ -97,9 +95,9 @@ public class RhythmCreator extends JFrame {
                     return;
                 }
 
+                rhythmCreatorButton.setVisible(true);
                 home.setVisible(false);
                 previousRhythms.setVisible(false);
-                System.out.println("my mom" + timeSignatures.getSelectedItem());
                 notesAndRestsLabel.setVisible(true);
                 timeSignatureLabel.setVisible(false);
                 timeSignatures.setVisible(false);
@@ -136,13 +134,14 @@ public class RhythmCreator extends JFrame {
         previousRhythms.setFocusable(false);
         previousRhythms.setBounds(75, 400, 150, 60);
         previousRhythms.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-        previousRhythms.setBackground(new Color(0x97f0ff));
+        previousRhythms.setBackground(new Color(0xcde7ec));
         previousRhythms.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        previousRhythms.setForeground(new Color(0x006874));
+        previousRhythms.setForeground(new Color(0x4a6267));
         previousRhythms.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] rhythmsFromFile = readFromFile(); //figure this out later -- probs gonna need to extract the add button stuff into a method so that I can call it and reuse the code
+                rhythmCreatorButton.setVisible(true);
                 next.setVisible(false);
                 timeSignatureLabel.setVisible(false);
                 timeSignatures.setVisible(false);
@@ -162,48 +161,31 @@ public class RhythmCreator extends JFrame {
         });
 
         rhythmCreatorButton.setBounds(75, 100, 150, 60);
-        rhythmCreatorButton.setBackground(Color.white);
         rhythmCreatorButton.setFocusable(false);
         rhythmCreatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-        rhythmCreatorButton.setBackground(new Color(0x97f0ff));
+        rhythmCreatorButton.setBackground(new Color(0xcde7ec));
         rhythmCreatorButton.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        rhythmCreatorButton.setForeground(new Color(0x006874));
+        rhythmCreatorButton.setForeground(new Color(0x4a6267));
+        rhythmCreatorButton.setVisible(false);
         rhythmCreatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("BRO");
                 frame.dispose();
                 new RhythmCreator();
             }
         });
 
-
-        next.setBackground(Color.white);
         next.setVisible(false);
         next.setFocusable(false);
-        next.setBackground(new Color(0x97f0ff));
+        next.setBackground(new Color(0xcde7ec));
         next.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        next.setForeground(new Color(0x006874));
+        next.setForeground(new Color(0x4a6267));
         next.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         next.setBounds(700, 400, 100, 60);
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                notesAndRestsComboBox.setEnabled(false);
-                notesAndRestsComboBox.setVisible(false);
-
-
-//                if(notesAndRestsComboBox != null) {
-//                    System.out.println("MUAY THAI");
-//                    notesAndRestsComboBox.setVisible(false); //this does not work at all
-//                } else {
-//                    System.out.println("boxing gloves");
-//                    notesAndRestsComboBox.setVisible(false);
-//                }
-                home.setVisible(false);
-                System.out.println("CHAIR");
                 notesAndRestsLabel.setVisible(false);
                 save.setVisible(false);
                 add.setVisible(false);
@@ -211,15 +193,13 @@ public class RhythmCreator extends JFrame {
                 rhythmList.getText();
                 String[] tempRhythmList = rhythmList.getText().split("\n");
                 for (int i = 0; i < tempRhythmList.length; i++) {
-                    System.out.println("kys " + tempRhythmList[i]);
-                    if (chooseYourRhythm.getText().equals(tempRhythmList[i])) { //case sensitive
-                        System.out.println("happy day working");
+                    if (chooseYourRhythm.getText().equals(tempRhythmList[i])) { //checks if the user typed in the name of a rhythm (case sensitive)
+                        home.setVisible(false); //if they do type in the name of a previous rhythm, all the buttons and labels are removed and the process of putting the notes back on the staff begins
                         rhythmList.setVisible(false);
                         previousRhythms.setVisible(false);
                         chooseYourRhythm.setVisible(false);
                         typeInYourRhythmNameLabel.setVisible(false);
                         next.setVisible(false);
-                        System.out.println("Yo mama This is what is going into the setStaff method: " + rhythms.get(chooseYourRhythm.getText()).substring(0, 3));
                         valueForHashMap = rhythms.get(chooseYourRhythm.getText());
                         setStaff(rhythms.get(chooseYourRhythm.getText()).substring(0, 3), 1);
                     }
@@ -295,16 +275,12 @@ public class RhythmCreator extends JFrame {
         }
         beatsLeftPerBar = beatsInABar;
 
-System.out.println("alarm clock " + whereIsThisFrom);
         if (whereIsThisFrom == 1) { //whereIsThisFrom integer is used to track where it came from... 1 means it was from a previous rhythm
             if(beatsLeft != null) {
-                System.out.println("potatoes " + beatsLeft);
                 beatsLeft.setText("");
             }
             addForReadingFromFile(); //this method puts the notes from the txt file onto the staff
         }
-        System.out.println("god please help me: " + beatsLeftPerBar);
-        System.out.println("APPLE SAUCE");
 
         String[] notesAndRests = {" ", "eighth note", "eighth rest", "quarter note", "quarter rest", "half note", "half rest", "whole note", "whole rest"};
         notesAndRestsComboBox = new JComboBox<>(notesAndRests);
@@ -312,7 +288,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
         notesAndRestsComboBox.setBounds(475, 200, 125, 25);
 
         beatsLeft = new JLabel();
-        System.out.println("CHICKEN SCRATCH " + beatsLeft);
         beatsLeft.setFont(new Font("Times New Roman", Font.PLAIN, 25));
         beatsLeft.setBounds(380, 250, 230, 30);
         frame.add(beatsLeft);
@@ -323,7 +298,7 @@ System.out.println("alarm clock " + whereIsThisFrom);
         frame.add(message);
 
         rhythmCreatorButton.setBounds(200, 400, 150, 60);
-        rhythmCreatorButton.setBackground(Color.white);
+        rhythmCreatorButton.setBackground(new Color(0xcde7ec));
         rhythmCreatorButton.setFocusable(false);
         rhythmCreatorButton.addActionListener(new ActionListener() {
             @Override
@@ -338,16 +313,15 @@ System.out.println("alarm clock " + whereIsThisFrom);
         save.setBounds(580, 400, 100, 60);
         save.setFocusable(false);
         save.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-        save.setBackground(new Color(0x97f0ff));
+        save.setBackground(new Color(0xcde7ec));
         save.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        save.setForeground(new Color(0x006874));
+        save.setForeground(new Color(0x4a6267));
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (numOfBarsLeft == 0 && beatsLeftPerBar == 0) {
                     rhythmName = JOptionPane.showInputDialog(frame, "Please name your new rhythm"); //asks for the user to give their rhythm a name
                     if(rhythmName != null) { //if they input something the system checks that the name is available. Case sensitive
-                        System.out.println("chocolate milk " + rhythmName);
                         for (String temp : rhythms.keySet()) {
                             if (rhythmName.equals(temp)) {
                                 JOptionPane.showMessageDialog(frame, "There is already a rhythm that exists under that name", "Error", JOptionPane.ERROR_MESSAGE);
@@ -355,8 +329,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                             }
                         }
                         rewriteRhythms();
-                    } else {
-                        System.out.println("waterbottle " + rhythmName);
                     }
                 } else { //if measures are not filled before pressing save
                     JOptionPane.showMessageDialog(frame, "Please fill in all the measures before saving", "saving error", JOptionPane.ERROR_MESSAGE);
@@ -366,9 +338,9 @@ System.out.println("alarm clock " + whereIsThisFrom);
 
         add.setFocusable(false);
         add.setBounds(350, 400, 100, 60);
-        add.setBackground(new Color(0x97f0ff));
+        add.setBackground(new Color(0xcde7ec));
         add.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        add.setForeground(new Color(0x006874));
+        add.setForeground(new Color(0x4a6267));
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -377,9 +349,9 @@ System.out.println("alarm clock " + whereIsThisFrom);
         });
 
         undo.setFocusable(false);
-        undo.setBackground(new Color(0x97f0ff));
+        undo.setBackground(new Color(0xcde7ec));
         undo.setBorder(BorderFactory.createLineBorder(new Color(0x6f797a), 1));
-        undo.setForeground(new Color(0x006874));
+        undo.setForeground(new Color(0x4a6267));
         undo.setBounds(450, 400, 100, 60);
         undo.addActionListener(new ActionListener() {
             @Override
@@ -388,31 +360,21 @@ System.out.println("alarm clock " + whereIsThisFrom);
                     message.setText("no notes to remove");
                     return;
                 }
-                System.out.println("iPhone 18 is shattered this is my rhythm2 variable at the beginning " + newRhythm); //absolutely nothing
                 String lastNote = "";
 
-                System.out.println("time for you to get a watch: " + time);
                 if (time == 1) { //first time: splits the newRhythm string and puts it in an array. Then the array gets put into an arraylist
                     newRhythm = newRhythm.substring(0, newRhythm.length() - 3);
-                    System.out.println("dingle harper " + newRhythm);
                     String[] tempArray = newRhythm.split("\\s+");
                     for (String temp : tempArray) {
                         newRhythmAsArray.add(temp);
                     }
                     lastNote = newRhythm.substring(newRhythm.length() - 2); //last note is taken from the last 2 characters of the newRhythm string
-                    System.out.println("Apple in California This is my last note: " + lastNote);
                     time++;
                 } else {
                     lastNote = newRhythm.substring(newRhythm.length() - 2);
                     newRhythm = newRhythm.substring(0, newRhythm.length() - 3);
                 }
                 newRhythmAsArray.remove(lastNote);
-                System.out.println("Wildfire new rhythm as an array now: " + newRhythmAsArray);
-                System.out.println("qwerty this is my new rhythm2 variable " + newRhythm);
-                System.out.println("alarm clock this is my last note variable: \"" + lastNote + "\"");
-                System.out.println("light switchrhythmForUndo size: " + (rhythmForUndo.size()-1));
-                System.out.println("hand wraps RhythmForUndo array: " + rhythmForUndo.toString());
-                System.out.println("reading light "  + rhythmForUndo.get(rhythmForUndo.size()-1));
 
                 rhythmForUndo.get(rhythmForUndo.size()-1).setVisible(false); //sets the last jlabel visible to false, effectively "removing" the note
                 rhythmForUndo.remove(rhythmForUndo.size()-1); //removes the last jlabel from the arraylist
@@ -431,7 +393,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                     }
                     case "HN", "HR" -> {
                         beatsLeftPerBar += 2;
-                        System.out.println("HISTORY");
                         xCoordinateInterval -= halfNoteInterval;
                         break;
                     }
@@ -448,7 +409,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                 }
                 //if the program has run out of beats in a certain bar but has other bars to fill out, it resets beats left per bar to the amt of beats per bar and takes away a bar
                 if (beatsLeftPerBar == 0 && numOfBarsLeft > 0) {
-                    System.out.println("ughhhhhhhh");
                     beatsLeftPerBar = beatsInABar;
                     numOfBarsLeft--;
                     barNumber++;
@@ -459,7 +419,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                     beatsLeftPerBar -= beatsInABar;
                     numOfBarsLeft++;
                     barNumber--;
-                    System.out.println("window this should be working" + beatsLeftPerBar + ", " + numOfBarsLeft);
                     beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar); //beats left label updates the user
                 }
                 beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar);
@@ -476,9 +435,7 @@ System.out.println("alarm clock " + whereIsThisFrom);
     }
 
     private void addForNewRhythm() { //the following 2 methods on adding notes to a bar are virtually the same
-        System.out.println("computer placing notes on the staff variable " + placingNotesOnStaff);
-        System.out.println("doorframe beatsLeftPerBar " + beatsLeftPerBar + " and bars left: " + numOfBarsLeft);
-        System.out.println("receipt xCoordinate: " + xCoordinateInterval);
+
         message.setText("");
         if (notesAndRestsComboBox.getSelectedItem() == "eighth note") {
             if (beatsLeftPerBar - 0.5 < 0) {
@@ -492,7 +449,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
             rhythmForUndo.add(eighthNoteWithFlag2); //label is then added to the rhythmForUndo arraylist in case the user ever wants to delete it
             beatsLeftPerBar -= 0.5; //updates beats left per bar variable
             xCoordinateInterval += eighthNoteInterval; //ensures the next note is properly spaced from this note
-            System.out.println("TXT beats left per bar " + beatsLeftPerBar);
         } else if (notesAndRestsComboBox.getSelectedItem() == "eighth rest") {
             if (beatsLeftPerBar - 0.5 < 0) {
                 message.setText("you cannot add an eighth rest");
@@ -517,7 +473,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
             rhythmForUndo.add(quarterNote2);
             beatsLeftPerBar--;
             xCoordinateInterval += quarterNoteInterval;
-            System.out.println("Blackpink beats left per bar " + beatsLeftPerBar);
         } else if (notesAndRestsComboBox.getSelectedItem() == "quarter rest") {
             if (beatsLeftPerBar - 1 < 0) {
                 message.setText("you cannot add a quarter rest");
@@ -542,7 +497,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                 rhythmForUndo.add(halfNote2);
                 beatsLeftPerBar -= 2;
                 xCoordinateInterval += halfNoteInterval;
-                System.out.println("Twice beats left per bar " + beatsLeftPerBar);
         } else if (notesAndRestsComboBox.getSelectedItem() == "half rest") {
             if (beatsLeftPerBar - halfRestValue < 0) {  //ideally if this is 2/4 time, this boolean will always be false and therefore you can't add it
                 message.setText("you cannot add a half rest");
@@ -555,7 +509,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
             rhythmForUndo.add(halfRest2);
             beatsLeftPerBar -= 2;
             xCoordinateInterval += halfNoteInterval;
-            System.out.println("Izone beats left per bar " + beatsLeftPerBar);
         } else if (notesAndRestsComboBox.getSelectedItem() == "whole note") { //note that this whole note and whole rests will not be available should the time signature be 2/4
             if (beatsLeftPerBar - 4 < 0) {
                 message.setText("you cannot add a whole note");
@@ -568,7 +521,6 @@ System.out.println("alarm clock " + whereIsThisFrom);
                 rhythmForUndo.add(wholeNote2);
                 beatsLeftPerBar -= 4;
                 xCoordinateInterval += 180;
-                System.out.println("BTS beats left per bar " + beatsLeftPerBar);
         } else if (notesAndRestsComboBox.getSelectedItem() == "whole rest") {
             if (beatsLeftPerBar - wholeRestValue < 0) {
                 message.setText("you cannot add a whole rest");
@@ -581,18 +533,15 @@ System.out.println("alarm clock " + whereIsThisFrom);
             rhythmForUndo.add(wholeRest2);
             beatsLeftPerBar -= wholeRestValue;
             xCoordinateInterval += 180;
-            System.out.println("GFriend beats left per bar " + beatsLeftPerBar);
         }
 
-            System.out.println("hoodie: " + newRhythm);
             beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar);
 
         if (barNumber == 4 && beatsLeftPerBar == 0) { //this is a completed rhythm w/ 4 full measures
             beatsLeft.setText("No more beats left!");
-            System.out.println("desktop new rhythm after no beats left: " + newRhythm);
         }
 
-        System.out.println("plastic beats left per bar: " + beatsLeftPerBar + " and number of bars left: " + numOfBarsLeft);
+
         if (beatsLeftPerBar == 0 && numOfBarsLeft > 0) { //this is the same as one of the if statements in the method above. It just resets the beatsLeftPerBar at beatsPerBar if there are still empty bars
             beatsLeftPerBar = beatsInABar;
             numOfBarsLeft--;
@@ -602,14 +551,10 @@ System.out.println("alarm clock " + whereIsThisFrom);
     }
 
     private void addForReadingFromFile() {
-        System.out.println("airvent now it is in the add method for reading from file");
         int startIndex = 4, endingIndex = 6;
         while (startIndex < valueForHashMap.length() ) { //hashmap is created in the readFromFile method
-            System.out.println("drawer now it is in the add method INSIDE the while loop");
             placingNotesOnStaff = valueForHashMap.substring(startIndex, endingIndex); //placingNotesOnStaff holds the next note that needs to be put onto the staff
-            System.out.println("artist placing notes on the staff variable " + placingNotesOnStaff);
-            System.out.println("playback speed beatsLeftPerBar " + beatsLeftPerBar + " and bars left: " + numOfBarsLeft);
-            System.out.println("youtube xCoordinate: " + xCoordinateInterval);
+
             message.setText("");
             if (beatsLeft != null) {
                 beatsLeft.setText("");
@@ -620,8 +565,7 @@ System.out.println("alarm clock " + whereIsThisFrom);
                 eighthNoteWithFlag2 = new JLabel(eighthNoteWithFlag);
                 eighthNoteWithFlag2.setBounds(xCoordinateInterval, 41, 22, 40);
                 staff.add(eighthNoteWithFlag2, Integer.valueOf(2));
-                xCoordinateInterval += eighthNoteInterval; //adds a certain number of pixels so the x-coordinate of the next note is appropriate
-                System.out.println("makeup beats left per bar " + beatsLeftPerBar);
+                xCoordinateInterval += eighthNoteInterval; //adds a certain number of pixels so the x-coordinate of the next note is correctly spaced
             } else if (placingNotesOnStaff.equals("ER")) {
                 newRhythm += " ER";
                 eighthRest2 = new JLabel(eighthRest);
@@ -631,10 +575,9 @@ System.out.println("alarm clock " + whereIsThisFrom);
             } else if (placingNotesOnStaff.equals("QN")) {
                 newRhythm += " QN";
                 quarterNote2 = new JLabel(quarterNote);
-                quarterNote2.setBounds(xCoordinateInterval, 41, 15, 40); //114
+                quarterNote2.setBounds(xCoordinateInterval, 41, 15, 40);
                 staff.add(quarterNote2, Integer.valueOf(2));
                 xCoordinateInterval += quarterNoteInterval;
-                System.out.println("chicken wings beats left per bar " + beatsLeftPerBar);
             } else if (placingNotesOnStaff.equals("QR")) {
                 newRhythm += " QR";
                 quarterRest2 = new JLabel(quarterRest);
@@ -644,34 +587,29 @@ System.out.println("alarm clock " + whereIsThisFrom);
             } else if (placingNotesOnStaff.equals("HN")) {
                 newRhythm += " HN";
                 halfNote2 = new JLabel(halfNote);
-                halfNote2.setBounds(xCoordinateInterval, 41, 15, 40); //155
+                halfNote2.setBounds(xCoordinateInterval, 41, 15, 40);
                 staff.add(halfNote2, Integer.valueOf(2));
                 xCoordinateInterval += halfNoteInterval;
-                System.out.println("apples beats left per bar " + beatsLeftPerBar);
             } else if (placingNotesOnStaff.equals("HR")) {
                 newRhythm += " HR";
                 halfRest2 = new JLabel(halfRest);
                 halfRest2.setBounds(xCoordinateInterval, 68, 30, 10);
                 staff.add(halfRest2, Integer.valueOf(2));
                 xCoordinateInterval += halfNoteInterval;
-                System.out.println("starfruit beats left per bar " + beatsLeftPerBar);
             } else if (placingNotesOnStaff.equals("WN")) { //note that this whole note and whole rests will not be available should the time signature be 2/4
                 newRhythm += " WN";
                 wholeNote2 = new JLabel(wholeNote);
-                wholeNote2.setBounds(xCoordinateInterval, 71, 15, 10);//196
+                wholeNote2.setBounds(xCoordinateInterval, 71, 15, 10);
                 staff.add(wholeNote2, Integer.valueOf(2));
                 xCoordinateInterval += 180;
-                System.out.println("pineapple pen beats left per bar " + beatsLeftPerBar);
             } else if (placingNotesOnStaff.equals("WR")) {
                 newRhythm += " WR";
                 wholeRest2 = new JLabel(wholeRest);
                 wholeRest2.setBounds(xCoordinateInterval, 66, 30, 10); //whole rest is supposed to hang off the second line so my y-coordinate was intentional
                 staff.add(wholeRest2, Integer.valueOf(2));
                 xCoordinateInterval += 180;
-                System.out.println("depression beats left per bar " + beatsLeftPerBar);
             }
 
-            System.out.println("anxiety " + newRhythm);
             startIndex += 3; //adds 3 so that it gets the next note in the key of the hashmap
             endingIndex += 3;
         }
@@ -699,27 +637,19 @@ System.out.println("alarm clock " + whereIsThisFrom);
             }
 
             rhythmAsAnArray = rhythmAsAString.split("\n"); //splits the string by the new line and puts it in an array
-            System.out.print(rhythmAsAString);
-
-            System.out.println("ergonomics " + Arrays.toString(rhythmAsAnArray));
-            System.out.println("business class " + rhythmAsAnArray.length);
 
             String tempKeyForHashMap = "", tempValueForHashMapAsAString = "";
 
             int i = 0, j = 1;
             while (i < rhythmAsAnArray.length && j < rhythmAsAnArray.length) { //odd numbers are the keys, even numbers are the values of the hashmap
                 tempKeyForHashMap = rhythmAsAnArray[i];
-                System.out.println("LG key to hashmap is: " + tempKeyForHashMap);
 
                 tempValueForHashMapAsAString = rhythmAsAnArray[j];
-                System.out.println("Samsung value for hashmap: " + tempValueForHashMapAsAString);
                 rhythms.put(tempKeyForHashMap, tempValueForHashMapAsAString);
                 i += 2;
                 j += 2;
             }
 
-            System.out.println("arrows " + rhythms); //not printing out the elements in the array but rather the array location
-            System.out.println("blanket " + rhythms.get("Name Of The Rhythm"));
             return rhythmAsAnArray;
         }
 

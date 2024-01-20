@@ -1,4 +1,4 @@
-package org.example; //NEED TO BE COMMENTED
+package org.example; //COMMENTED AND REMOVED PRINTLNS
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -544,7 +544,7 @@ public class Intervals extends JFrame {
     }
 
     public void Gs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        //sets the bounds of the note and changes the note depending on
+        //sets the bounds of the note and alters the noteName if there is a sharp or flat, so that the playing notes methods play the right note.
         if (octave == 1) {
             wholeNote2.setBounds(230, 159, 33, 23);
             staff.add(wholeNote2, Integer.valueOf(1));
@@ -592,6 +592,231 @@ public class Intervals extends JFrame {
         frame.add(staff);
     }
 
+    public void As(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 147, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 4;
+            } else if (flat == 1) {
+                bassNote = 2;
+            } else {
+                bassNote = 3;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            wholeNote2.setBounds(230, 58, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp != 0) {
+                bassNote = 4;
+            } else if (flat != 0) {
+                bassNote = 2;
+            } else {
+                bassNote = 3;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3) {
+            wholeNote2.setBounds(150, 88, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp != 0) {
+                bassNote = 4;
+            } else if (flat != 0) {
+                bassNote = 2;
+            } else {
+                bassNote = 3;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+
+        frame.add(staff);
+    }
+    public void Bs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 134, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 6;
+            } else if (flat == 1) {
+                bassNote = 4;
+            } else {
+                bassNote = 5;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            wholeNote2.setBounds(230, 46, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 6;
+            } else if (flat == 1) {
+                bassNote = 4;
+            } else {
+                bassNote = 5;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3) {
+            wholeNote2.setBounds(150, 77, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 6;
+            } else if (flat == 1) {
+                bassNote = 4;
+            } else {
+                bassNote = 5;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+        frame.add(staff);
+    }
+    public void Cs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 121, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 7;
+            } else if (flat == 1) {
+                bassNote = 5;
+            } else {
+                bassNote = 6;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            middleCTC2.setBounds(150, 144, 64, 23);
+            staff.add(middleCTC2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 7;
+            } else if (flat == 1) {
+                bassNote = 5;
+            } else {
+                bassNote = 6;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3) {
+            wholeNote2.setBounds(150, 66, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 7;
+            } else if (flat == 1) {
+                bassNote = 5;
+            } else {
+                bassNote = 6;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+        frame.add(staff);
+    }
+    public void Ds(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 109, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 9;
+            } else if (flat == 1) {
+                bassNote = 7;
+            } else {
+                bassNote = 8;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            wholeNote2.setBounds(150, 133, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 9;
+            } else if (flat == 1) {
+                bassNote = 7;
+            } else {
+                bassNote = 8;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3){
+            wholeNote2.setBounds(150, 55, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 9;
+            } else if (flat == 1) {
+                bassNote = 7;
+            } else {
+                bassNote = 8;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+        frame.add(staff);
+    }
+    public void Es(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 96, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+               bassNote = 11;
+            } else if (flat == 1) {
+                bassNote = 9;
+            } else {
+                bassNote = 10;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            wholeNote2.setBounds(150, 122, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 11;
+            } else if (flat == 1) {
+                bassNote = 9;
+            } else {
+                bassNote = 10;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3) {
+            wholeNote2.setBounds(150, 43, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if (sharp == 1) {
+                bassNote = 11;
+            } else if (flat == 1) {
+                bassNote = 9;
+            } else {
+                bassNote = 10;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+        frame.add(staff);
+    }
+    public void Fs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (octave == 1) {
+            wholeNote2.setBounds(230, 83, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 12;
+            } else if (flat == 1) {
+                bassNote = 10;
+            } else {
+                bassNote = 11;
+            }
+            octave1NotesIntervals(bassNote);
+        } else if (octave == 2) {
+            wholeNote2.setBounds(150, 110, 33, 23);
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 12;
+            } else if (flat == 1) {
+                bassNote = 10;
+            } else {
+                bassNote = 11;
+            }
+            octave2NotesIntervals(bassNote);
+        } else if (octave == 3) {
+            wholeNote2.setBounds(150, 32, 33, 23);
+
+            staff.add(wholeNote2, Integer.valueOf(1));
+            if(sharp == 1) {
+                bassNote = 12;
+            } else if (flat == 1) {
+                bassNote = 10;
+            } else {
+                bassNote = 11;
+            }
+            octave3NotesIntervals(bassNote);
+        }
+        frame.add(staff);
+    }
+
     public void octave3NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         File g4 = new File("src/g4.wav"); //creating the files
         File gSharp4 = new File("src/gSharp4.wav");
@@ -606,7 +831,7 @@ public class Intervals extends JFrame {
         File f5 = new File("src/f5.wav");
         File fSharp5 = new File("src/fSharp5.wav");
 
-        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5}; //putting the files into an array so that its easier to make them an audioStream
+        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5}; //putting the files into an array so that it's easier to make them an audioStream
         AudioInputStream[] audioStream = new AudioInputStream[12];
 
         for(int i = 0; i < 12; i++) { //getting the audio input stream
@@ -631,8 +856,84 @@ public class Intervals extends JFrame {
         }
     }
 
+    public void octave2NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File g3 = new File("src/g3.wav");
+        File gSharp3 = new File("src/gSharp3.wav");
+        File a3 = new File("src/a3.wav");
+        File aSharp3 = new File("src/aSharp3.wav");
+        File b3 = new File("src/b3.wav");
+        File c4 = new File("src/c4.wav");
+        File cSharp4 = new File("src/cSharp4.wav");
+        File d4 = new File("src/d4.wav");
+        File dSharp4 = new File("src/dSharp4.wav");
+        File e4 = new File("src/e4.wav");
+        File f4 = new File("src/f4.wav");
+        File fSharp4 = new File("src/fSharp4.wav");
+
+        File[] secondOctaveNotes = {g3, gSharp3, a3, aSharp3, b3, c4, cSharp4, d4, dSharp4, e4, f4, fSharp4};
+        AudioInputStream[] audioStream = new AudioInputStream[12];
+
+        for(int i = 0; i < 12; i++) {
+            audioStream[i] = AudioSystem.getAudioInputStream(secondOctaveNotes[i]);
+        }
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream[bassNote - 1]);
+        clip.start();
+        ActionListener taskPerformer = e -> {
+            try {
+                playSecondNote();
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        };
+        Timer timer = new Timer(1655, taskPerformer);
+        timer.setRepeats(false);
+        if(controlTimer == 1) {
+            controlTimer++; //the user resets it back to one when the user clicks next exercise
+            timer.start();
+        }
+    }
+
+    public void octave1NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File g2 = new File("src/g2.wav");
+        File gSharp2 = new File("src/gSharp2.wav");
+        File a2 = new File("src/a2.wav");
+        File aSharp2 = new File("src/bFlat2.wav");
+        File b2 = new File("src/b2.wav");
+        File c3 = new File("src/c3.wav");
+        File cSharp3 = new File("src/cSharp3.wav");
+        File d3 = new File("src/d3.wav");
+        File dSharp3 = new File("src/eFlat3.wav");
+        File e3 = new File("src/e3.wav");
+        File f3 = new File("src/f3.wav");
+        File fSharp3 = new File("src/fSharp3.wav");
+
+        File[] firstOctaveNotes = {g2, gSharp2, a2, aSharp2, b2, c3, cSharp3, d3, dSharp3, e3, f3, fSharp3};
+        AudioInputStream[] audioStream = new AudioInputStream[12];
+
+        for(int i = 0; i < 12; i++) {
+            audioStream[i] = AudioSystem.getAudioInputStream(firstOctaveNotes[i]);
+        }
+        Clip clip1 = AudioSystem.getClip();
+        clip1.open(audioStream[bassNote - 1]);
+        clip1.start();
+        ActionListener taskPerformer = e -> {
+            try {
+                playSecondNote();
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        };
+        Timer timer = new Timer(1655, taskPerformer);
+        timer.setRepeats(false);
+        if(controlTimer == 1) {
+            controlTimer++;
+            timer.start();
+        }
+    }
+
     public void playSecondNote() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        switch(saveTopNote) { //
+        switch(saveTopNote) { //redirects saveTopNote to its method to play the second note, passing in the bass note
             case 1: //all for Gs
                 if (saveSecondNoteOctave == 2) { //there is no perfect 1 in my program so save second octave will not be in octave 1
                     octave2NotesIntervals(1);
@@ -742,360 +1043,22 @@ public class Intervals extends JFrame {
         }
     }
 
-    public void octave2NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        File g3 = new File("src/g3.wav");
-        File gSharp3 = new File("src/gSharp3.wav");
-        File a3 = new File("src/a3.wav");
-        File aSharp3 = new File("src/aSharp3.wav");
-        File b3 = new File("src/b3.wav");
-        File c4 = new File("src/c4.wav");
-        File cSharp4 = new File("src/cSharp4.wav");
-        File d4 = new File("src/d4.wav");
-        File dSharp4 = new File("src/dSharp4.wav");
-        File e4 = new File("src/e4.wav");
-        File f4 = new File("src/f4.wav");
-        File fSharp4 = new File("src/fSharp4.wav");
-
-        File[] secondOctaveNotes = {g3, gSharp3, a3, aSharp3, b3, c4, cSharp4, d4, dSharp4, e4, f4, fSharp4};
-        AudioInputStream[] audioStream = new AudioInputStream[12];
-
-        for(int i = 0; i < 12; i++) {
-            audioStream[i] = AudioSystem.getAudioInputStream(secondOctaveNotes[i]);
-        }
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioStream[bassNote - 1]);
-        clip.start();
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("y is this useless2");
-                try {
-                    playSecondNote();
-                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        };
-        Timer timer = new Timer(1655, taskPerformer);//this is going to make it go forever ;(
-        timer.setRepeats(false);
-        if(controlTimer == 1) {
-            controlTimer++; //then when user replays reset it back to 1
-            timer.start();
-        }
-    }
-
-    public void octave1NotesIntervals(int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        File g2 = new File("src/g2.wav");
-        File gSharp2 = new File("src/gSharp2.wav");
-        File a2 = new File("src/a2.wav");
-        File aSharp2 = new File("src/bFlat2.wav");
-        File b2 = new File("src/b2.wav");
-        File c3 = new File("src/c3.wav");
-        File cSharp3 = new File("src/cSharp3.wav");
-        File d3 = new File("src/d3.wav");
-        File dSharp3 = new File("src/eFlat3.wav");
-        File e3 = new File("src/e3.wav");
-        File f3 = new File("src/f3.wav");
-        File fSharp3 = new File("src/fSharp3.wav");
-
-        File[] firstOctaveNotes = {g2, gSharp2, a2, aSharp2, b2, c3, cSharp3, d3, dSharp3, e3, f3, fSharp3};
-        AudioInputStream[] audioStream = new AudioInputStream[12];
-
-        for(int i = 0; i < 12; i++) {
-            audioStream[i] = AudioSystem.getAudioInputStream(firstOctaveNotes[i]);
-        }
-        Clip clip1 = AudioSystem.getClip();
-        clip1.open(audioStream[bassNote - 1]);
-        clip1.start();
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("y is this useless3");
-                try {
-                    playSecondNote();
-                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        };
-        Timer timer = new Timer(1655, taskPerformer);//this is going to make it go forever ;(
-        timer.setRepeats(false);
-        if(controlTimer == 1) {
-            controlTimer++; //then when user replays reset it back to 1
-            timer.start();
-        }
-    }
-
-    public void As(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 147, 33, 23);
-            System.out.println("A2");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 4;
-            } else if (flat == 1) {
-                bassNote = 2;
-            } else {
-                bassNote = 3;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            wholeNote2.setBounds(230, 58, 33, 23);
-            System.out.println("A3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp != 0) {
-                bassNote = 4;
-            } else if (flat != 0) {
-                bassNote = 2;
-            } else {
-                bassNote = 3;
-            }
-            System.out.println(bassNote);
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3) {
-            wholeNote2.setBounds(150, 88, 33, 23);
-            System.out.println("A4");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp != 0) {
-                bassNote = 4;
-            } else if (flat != 0) {
-                bassNote = 2;
-            } else {
-                bassNote = 3;
-            }
-            System.out.println(bassNote);
-            octave3NotesIntervals(bassNote);
-        }
-
-        frame.add(staff);
-    }
-    public void Bs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 134, 33, 23);
-            System.out.println("B2");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 6;
-            } else if (flat == 1) {
-                bassNote = 4;
-            } else {
-                bassNote = 5;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            wholeNote2.setBounds(230, 46, 33, 23);
-            System.out.println("B3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 6;
-            } else if (flat == 1) {
-                bassNote = 4;
-            } else {
-                bassNote = 5;
-            }
-            System.out.println(bassNote);
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3) {
-            wholeNote2.setBounds(150, 77, 33, 23);
-            System.out.println("B4");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 6;
-            } else if (flat == 1) {
-                bassNote = 4;
-            } else {
-                bassNote = 5;
-            }
-            System.out.println(bassNote);
-            octave3NotesIntervals(bassNote);
-        }
-        frame.add(staff);
-    }
-    public void Cs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 121, 33, 23);
-            System.out.println("C3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 7;
-            } else if (flat == 1) {
-                bassNote = 5;
-            } else {
-                bassNote = 6;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            middleCTC2.setBounds(150, 144, 64, 23);
-            System.out.println("middle c in treble clef");
-            staff.add(middleCTC2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 7;
-            } else if (flat == 1) {
-                bassNote = 5;
-            } else {
-                bassNote = 6;
-            }
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3) {
-            wholeNote2.setBounds(150, 66, 33, 23);
-            System.out.println("C5");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 7;
-            } else if (flat == 1) {
-                bassNote = 5;
-            } else {
-                bassNote = 6;
-            }
-            octave3NotesIntervals(bassNote);
-        }
-        frame.add(staff);
-    }
-    public void Ds(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 109, 33, 23);
-            System.out.println("D3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 9;
-            } else if (flat == 1) {
-                bassNote = 7;
-            } else {
-                bassNote = 8;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            wholeNote2.setBounds(150, 133, 33, 23);
-            System.out.println("D4");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 9;
-            } else if (flat == 1) {
-                bassNote = 7;
-            } else {
-                bassNote = 8;
-            }
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3){
-            wholeNote2.setBounds(150, 55, 33, 23);
-            System.out.println("D5");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 9;
-            } else if (flat == 1) {
-                bassNote = 7;
-            } else {
-                bassNote = 8;
-            }
-            octave3NotesIntervals(bassNote);
-        }
-        frame.add(staff);
-    }
-    public void Es(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 96, 33, 23);
-            System.out.println("E3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-               bassNote = 11;
-            } else if (flat == 1) {
-                bassNote = 9;
-            } else {
-                bassNote = 10;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            wholeNote2.setBounds(150, 122, 33, 23);
-            System.out.println("E4");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 11;
-            } else if (flat == 1) {
-                bassNote = 9;
-            } else {
-                bassNote = 10;
-            }
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3) {
-            wholeNote2.setBounds(150, 43, 33, 23);
-            System.out.println("E5");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if (sharp == 1) {
-                bassNote = 11;
-            } else if (flat == 1) {
-                bassNote = 9;
-            } else {
-                bassNote = 10;
-            }
-            octave3NotesIntervals(bassNote);
-        }
-        frame.add(staff);
-    }
-    public void Fs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (octave == 1) {
-            wholeNote2.setBounds(230, 83, 33, 23);
-            System.out.println("F3");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 12;
-            } else if (flat == 1) {
-                bassNote = 10;
-            } else {
-                bassNote = 11;
-            }
-            System.out.println(bassNote);
-            octave1NotesIntervals(bassNote);
-        } else if (octave == 2) {
-            wholeNote2.setBounds(150, 110, 33, 23);
-            System.out.println("F4");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 12;
-            } else if (flat == 1) {
-                bassNote = 10;
-            } else {
-                bassNote = 11;
-            }
-            octave2NotesIntervals(bassNote);
-        } else if (octave == 3) {
-            wholeNote2.setBounds(150, 32, 33, 23);
-            System.out.println("F5");
-            staff.add(wholeNote2, Integer.valueOf(1));
-            if(sharp == 1) {
-                bassNote = 12;
-            } else if (flat == 1) {
-                bassNote = 10;
-            } else {
-                bassNote = 11;
-            }
-            octave3NotesIntervals(bassNote);
-        }
-        frame.add(staff);
-    }
     public void choosingSharpOrFlatBassNote(int octave, int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        int sharpOrFlat = rand.nextInt(1, 3);
+        int sharpOrFlat = rand.nextInt(1, 3); //random int for sharp or flat for the bass note and places the sharp or flat symbol on the correct line. 1 = sharp, 2 = flat
         if (sharpOrFlat == 1) { //sharp
             switch (bassNote) {
                 case 2: //G#
                     absoluteBassNote = 1;
                     if (octave == 1) {
                         sharp2.setBounds(200, 139, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Gs(1, 1, 0);
                     } else if (octave == 2) {
                         sharp2.setBounds(200, 49, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Gs(2, 1, 0);
                     } else if (octave == 3) {
                         sharp2.setBounds(125, 82, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Gs(3, 1, 0);
                     }
@@ -1104,17 +1067,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 2;
                     if (octave == 1) {
                         sharp2.setBounds(200, 126, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         As(1, 1, 0);
                     } else if (octave == 2) {
                         sharp2.setBounds(200, 38, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         As(2, 1, 0);
                     } else if (octave == 3) {
                         sharp2.setBounds(125, 70, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         As(3, 1, 0);
                     }
@@ -1123,17 +1083,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 4;
                     if (octave == 1) {
                         sharp2.setBounds(200, 100, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Cs(1, 1, 0);
                     } else if (octave == 2) {
                         sharp2.setBounds(125, 125, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Cs(2, 1, 0);
                     } else if (octave == 3) {
                         sharp2.setBounds(125, 48, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Cs(3, 1, 0);
                     }
@@ -1142,17 +1099,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 5;
                     if (octave == 1) {
                         sharp2.setBounds(200, 88, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Ds(1, 1, 0);
                     } else if (octave == 2) {
                         sharp2.setBounds(125, 115, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Ds(2, 1, 0);
                     } else if (octave == 3) {
                         sharp2.setBounds(125, 37, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Ds(3, 1, 0);
                     }
@@ -1161,17 +1115,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 7;
                     if (octave == 1) {
                         sharp2.setBounds(200, 62, 25, 65);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Fs(1, 1, 0);
                     } else if (octave == 2) {
                         sharp2.setBounds(125, 93, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Fs(2, 1, 0);
                     } else if (octave == 3) {
                         sharp2.setBounds(125, 15, 22, 57);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(sharp2, Integer.valueOf(2));
                         Fs(3, 1, 0);
                     }
@@ -1184,17 +1135,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 2;
                     if (octave == 1) {
                         flatTC2.setBounds(200, 127, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         As(1, 0, 1);
                     } else if (octave == 2) {
                         flatTC2.setBounds(200, 39, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         As(2, 0, 1);
                     } else if (octave == 3) {
                         flatTC2.setBounds(115, 68, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         As(3, 0, 1);
                     }
@@ -1203,17 +1151,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 3;
                     if (octave == 1) {
                         flatTC2.setBounds(200, 115, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Bs(1, 0, 1);
                     } else if (octave == 2) {
                         flatTC2.setBounds(200, 25, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Bs(2, 0, 1);
                     } else if (octave == 3) {
                         flatTC2.setBounds(115, 58, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Bs(3, 0, 1);
                     }
@@ -1222,17 +1167,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 5;
                     if (octave == 1) {
                         flatTC2.setBounds(200, 89, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Ds(1, 0, 1);
                     } else if (octave == 2) {
                         flatTC2.setBounds(115, 112, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Ds(2, 0, 1);
                     } else if (octave == 3) {
                         flatTC2.setBounds(115, 35, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Ds(3, 0, 1);
                     }
@@ -1241,17 +1183,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 6;
                     if (octave == 1) {
                         flatTC2.setBounds(200, 76, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Es(1, 0, 1);
                     } else if (octave == 2) {
                         flatTC2.setBounds(115, 103, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Es(2, 0, 1);
                     } else if (octave == 3) {
                         flatTC2.setBounds(115, 23, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Es(3, 0, 1);
                     }
@@ -1260,17 +1199,14 @@ public class Intervals extends JFrame {
                     absoluteBassNote = 1;
                     if (octave == 1) {
                         flatTC2.setBounds(200, 51, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Gs(2, 0, 1);
                     } else if (octave == 2) {
                         flatTC2.setBounds(115, 80, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Gs(3, 0, 1);
                     } else if (octave == 3) {
                         flatTC2.setBounds(115, 0, 18, 44);
-                        System.out.println(octave + " " + bassNote);
                         staff.add(flatTC2, Integer.valueOf(2));
                         Gs(4, 0, 1);
                     }
@@ -1279,251 +1215,6 @@ public class Intervals extends JFrame {
             frame.add(staff);
         }
 
-    }
-
-    public void choosingSharpOrFlatTopNote(int octave, int absoluteTopNote) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-    //get the absolute bass note, then add the absolute interval and add it to become the absolute top note, then change it to a string eg. Eb or D# but it has to be a D therefore its going to be sharp
-       System.out.println("this is absolute top note" + absoluteTopNote);
-        if(secondNote == 2 && absoluteTopNote == 1) { //G#
-            if (octave == 1) {
-                sharp2.setBounds(200, 139, 25, 65); //maybe 285 for x
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Gs(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(200, 49, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Gs(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 82, 22, 57); //around 200 for x
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Gs(3, 1, 0);
-            }
-        } else if (secondNote == 2 && absoluteTopNote == 2) { //Ab
-            if (octave == 1) {
-                flatTC2.setBounds(200, 127, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                As(1, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(200, 39, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                As(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 68, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                As(3, 0, 1);
-            }
-        } else if (secondNote == 4 && absoluteTopNote == 2) { //A#
-            if (octave == 1) {
-                sharp2.setBounds(200, 126, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                As(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(200, 38, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                As(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 70, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                As(3, 1, 0);
-            }
-        } else if (secondNote == 4 && absoluteTopNote == 3) { //Bb
-            if (octave == 1) {
-                flatTC2.setBounds(200, 115, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Bs(1, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(200, 25, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Bs(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 58, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Bs(3, 0, 1);
-            }
-        } else if (secondNote == 5 && absoluteTopNote == 6) { //Cb
-            if (octave == 1) {
-                flatTC2.setBounds(200, 101, 18, 44);
-                System.out.println("Cb3");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Cs(1, 0, 1);
-            } else if (octave == 2) { //Cb is technically a B and Cb4 only exists in bass clef
-                flatTC2.setBounds(200, 20, 18, 44); //need to check which clef it is given to
-                System.out.println("Cb4 in bass clef");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Cs(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 45, 18, 44);
-                System.out.println("Cb5");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Cs(3, 0, 1);
-            }
-        } else if (secondNote == 6 && absoluteTopNote == 3) { //B#
-            if (octave == 1) {
-                sharp2.setBounds(200, 114, 25, 65);
-                System.out.println("B#2");
-                staff.add(sharp2, Integer.valueOf(2));
-                Bs(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(125, 25, 25, 65);
-                System.out.println("B#3 in bass clef");
-                staff.add(sharp2, Integer.valueOf(2));
-                Bs(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 56, 25, 65);
-                System.out.println("B#4");
-                staff.add(sharp2, Integer.valueOf(2));
-                Bs(3, 1, 0);
-            }
-        } else if (secondNote == 7 && absoluteTopNote == 4) { //C#
-            if (octave == 1) {
-                sharp2.setBounds(200, 100, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Cs(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(125, 125, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Cs(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 48, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Cs(3, 1, 0);
-            }
-        } else if (secondNote == 7 && absoluteTopNote == 5) { //Db
-            if (octave == 1) {
-                flatTC2.setBounds(200, 89, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Ds(1, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(115, 112, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Ds(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 35, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Ds(3, 0, 1);
-            }
-        } else if (secondNote == 9 && absoluteTopNote == 5) { //D#
-            if (octave == 1) {
-                sharp2.setBounds(200, 88, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Ds(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(125, 115, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Ds(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 37, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Ds(3, 1, 0);
-            }
-        } else if (secondNote == 9 && absoluteTopNote == 6) { //Eb
-            if (octave == 1) {
-                flatTC2.setBounds(200, 76, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Es(1, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(115, 103, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Es(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 23, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Es(3, 0, 1);
-            }
-        } else if (secondNote == 10 && absoluteTopNote == 7) { //Fb
-            if (octave == 1) {
-                flatTC2.setBounds(200, 64, 18, 44);
-                System.out.println("Fb3");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Fs(1, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(115, 91, 18, 44);
-                System.out.println("Fb4");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Fs(2, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 13, 18, 44);
-                System.out.println("Fb5");
-                staff.add(flatTC2, Integer.valueOf(2));
-                Fs(3, 0, 1);
-            }
-        } else if (secondNote == 11 && absoluteTopNote == 6) { //E#
-            if (octave == 1) {
-                sharp2.setBounds(200, 75, 25, 65);
-                System.out.println("E#3");
-                staff.add(sharp2, Integer.valueOf(2));
-                Es(1, 1, 0); //need to adjust the E method
-            } else if (octave == 2) {
-                sharp2.setBounds(125, 102, 22, 57);
-                System.out.println("E#4");
-                staff.add(sharp2, Integer.valueOf(2));
-                Es(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 22, 22, 57);
-                System.out.println("E#5");
-                staff.add(sharp2, Integer.valueOf(2));
-                Es(3, 1, 0);
-            }
-        } else if (secondNote == 12 && absoluteTopNote == 7) { //F#
-            if (octave == 1) {
-                sharp2.setBounds(200, 62, 25, 65);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Fs(1, 1, 0);
-            } else if (octave == 2) {
-                sharp2.setBounds(125, 93, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Fs(2, 1, 0);
-            } else if (octave == 3) {
-                sharp2.setBounds(125, 15, 22, 57);
-                System.out.println(octave + " " + bassNote);
-                staff.add(sharp2, Integer.valueOf(2));
-                Fs(3, 1, 0);
-            }
-        } else if (secondNote == 12 && absoluteTopNote == 1) { //Gb
-            if (octave == 1) {
-                flatTC2.setBounds(200, 51, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Gs(2, 0, 1);
-            } else if (octave == 2) {
-                flatTC2.setBounds(115, 80, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Gs(3, 0, 1);
-            } else if (octave == 3) {
-                flatTC2.setBounds(115, 0, 18, 44);
-                System.out.println(octave + " " + bassNote);
-                staff.add(flatTC2, Integer.valueOf(2));
-                Gs(4, 0, 1);
-            }
-        }
-        frame.add(staff);
     }
 }
 
