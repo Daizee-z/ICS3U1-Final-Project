@@ -1,4 +1,4 @@
-package org.example; //COMMENTS ARE DONE AND PRINTLN ARE GONE
+package org.example; //COMMENTS ARE DONE AND PRINTLN ARE GONE -- Notes comments have also been revised
 
 
 import javax.sound.sampled.*;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Notes extends JFrame {
     public static int numOfExercises, correctAnswers, wrongAnswers, numOfTimesGivenUp;
-    int noteName, saveNoteName, saveOctave, saveSharpOrFlat;
+    int noteName, saveNoteName, saveSharpOrFlat;
     Random rand = new Random();
     JLayeredPane staff = new JLayeredPane();
     ImageIcon wholeNoteTC = new ImageIcon("src/wholeNoteTC.png");
@@ -285,15 +285,28 @@ public class Notes extends JFrame {
     }
 
      private void tellAnswer() {
-         numOfTimesGivenUp++; //adds to the counters
+         numOfTimesGivenUp++; //adds to the counters so that they can be displayed later on
          numOfExercises++;
-         viewScore.setVisible(false); //sets all the irrelevant buttons to false
+         viewScore.setVisible(false); //sets all the irrelevant buttons to false to make space for the answer
          tellMe.setVisible(false);
          correctMessage.setVisible(false);
          for (int i = 0; i < 17; i++) {
              notes[i].setVisible(false);
          }
 
+         String saveNoteName2 = getAnswerAsAString(saveNoteName);
+
+         //displays the answer to the user
+         JLabel giveUpCorrectAnswer = new JLabel("Correct Answer: " + saveNoteName2);
+         giveUpCorrectAnswer.setFont(new Font("Rockwell", Font.PLAIN, 20));
+         giveUpCorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
+         giveUpCorrectAnswer.setBounds(250, 310, 400, 60);
+
+         frame.add(giveUpCorrectAnswer);
+         nextExercise();
+     }
+
+     private String getAnswerAsAString(int saveNoteName){
          switch (saveNoteName) { //converts the answer to a string
              case 1:
                  saveNoteName2 = "G";
@@ -352,16 +365,8 @@ public class Notes extends JFrame {
                  }
                  break;
          }
-         //displays the answer to the user
-         JLabel giveUpCorrectAnswer = new JLabel("Correct Answer: " + saveNoteName2);
-         giveUpCorrectAnswer.setFont(new Font("Rockwell", Font.PLAIN, 20));
-         giveUpCorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
-         giveUpCorrectAnswer.setBounds(250, 310, 400, 60);
-
-         frame.add(giveUpCorrectAnswer);
-         nextExercise();
+         return saveNoteName2;
      }
-
      private void viewScore() {
         staff.setVisible(false); //makes all the irrelevant items invisible
         viewScore.setVisible(false);
@@ -451,13 +456,13 @@ public class Notes extends JFrame {
     }
 
     public void getNoteName(int octave, int noteName, String whereIsMiddleC) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-         //this method redirects
+         //this method switches the program to the right method based on the noteName.
         switch (noteName) {
             case 1:
                 Gs(octave, 0, 0);
                 break;
             case 2, 4, 7, 9, 12:
-                choosingSharpOrFlat(octave, noteName, whereIsMiddleC); //where is middleC only useful if it is case 7
+                choosingSharpOrFlat(octave, noteName, whereIsMiddleC); //where is middleC is only useful if it is case 7 (C#) otherwise it is just "no" to indicate that it is not a C
                 break;
             case 3:
                 As(octave, 0, 0);
@@ -479,8 +484,8 @@ public class Notes extends JFrame {
                 break;
         }
     }
-    public void Gs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException { //or switch
-        //setting bounds of the note
+    public void Gs(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        //setting bounds of the note, then adding it to the staff (JLayeredPane) at an integer value of 1 so that the label rests on top of the staff
          if (octave == 1) {
             wholeNoteTC2.setBounds(230, 153, 33, 23);
             staff.add(wholeNoteTC2, Integer.valueOf(1));
@@ -503,9 +508,9 @@ public class Notes extends JFrame {
                 noteName = 1;
             }
             if(noteName == 12) {
-                octave1Notes(12);
+                octave1Notes(12); //although this is in octave 2, since the note that has been chosen is technically an F# with the noteName 12, it goes into octave 1 notes. **each octave covers G - F#**
             } else {
-                octave2Notes(noteName);
+                octave2Notes(noteName); //whether it is sharp or flat, it is still in the same octave, therefore it will go into octave 2 notes
             }
         } else if (octave == 3) {
             wholeNoteTC2.setBounds(150, 99, 33, 23);
@@ -522,7 +527,7 @@ public class Notes extends JFrame {
             } else {
                 octave3Notes(noteName);
             }
-        } else if (octave == 4) { //always going to be a g flat
+        } else if (octave == 4) { //this G was created for Gb5, therefore it will always go into octave3Notes with a noteName of 12
             wholeNoteTC2.setBounds(150, 21, 33, 23);
             staff.add(wholeNoteTC2, Integer.valueOf(1));
             octave3Notes(12);
@@ -530,6 +535,7 @@ public class Notes extends JFrame {
         frame.add(staff);
     }
 
+    //similar logic applies to all the other methods that set the bounds of the notes, except there is no need to change octaves when calling the play notes method since the sharps and flats of the note are in the same octave
     public void As(int octave, int sharp, int flat) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         if (octave == 1) {
             wholeNoteTC2.setBounds(230, 141, 33, 23);
@@ -710,6 +716,7 @@ public class Notes extends JFrame {
         }
         frame.add(staff);
     }
+
     public void Fs(int octave, int sharp) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         if (octave == 1) {
             wholeNoteTC2.setBounds(230, 77, 33, 23);
@@ -928,20 +935,19 @@ public class Notes extends JFrame {
     }
 
     public void octave1Notes(int noteName) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-        saveNoteName = noteName;
-        saveOctave = 1;
+        saveNoteName = noteName; //saveNoteName is a global variable that is used to check if the user's answer is correct
 
-        for(int i = 0; i < 12; i++) { //gets the audio input stream of the array of files and puts it in an array of audio input stream
+        for(int i = 0; i < 12; i++) { //gets the audio input stream of the array of files and puts it in an array of audio input stream using a for loop
             audioStreamFirstOctave[i] = AudioSystem.getAudioInputStream(firstOctaveNotes[i]);
         }
         Clip firstOctave = AudioSystem.getClip();
         firstOctave.open(audioStreamFirstOctave[noteName - 1]); //opens and play the clip. noteName - 1 to get the index
         firstOctave.start();
     }
+
     public void octave2Notes(int noteName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         saveNoteName = noteName;
-        saveOctave = 2;
 
         for(int i = 0; i < 12; i++) {
             audioStreamSecondOctave[i] = AudioSystem.getAudioInputStream(secondOctaveNotes[i]);
@@ -952,9 +958,7 @@ public class Notes extends JFrame {
     }
 
     public void octave3Notes(int noteName) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-
         saveNoteName = noteName;
-        saveOctave = 3;
 
         for(int i = 0; i < 12; i++) {
             audioStreamThirdOctave[i] = AudioSystem.getAudioInputStream(thirdOctaveNotes[i]);
@@ -980,64 +984,7 @@ public class Notes extends JFrame {
     }
 
     public void wrong() {
-        switch (saveNoteName) { //converts answer into a string
-            case 1:
-                saveNoteName2 = "G";
-                break;
-            case 2:
-                if (saveSharpOrFlat == 1) {
-                   saveNoteName2 = "G sharp";
-                } else {
-                    saveNoteName2 = "A flat";
-                }
-                break;
-            case 3:
-                saveNoteName2 = "A";
-                break;
-            case 4:
-                if (saveSharpOrFlat == 1) {
-                    saveNoteName2 = "A sharp";
-                } else {
-                    saveNoteName2 = "B flat";
-                }
-                break;
-            case 5:
-                saveNoteName2 = "B";
-                break;
-            case 6:
-                saveNoteName2 = "C";
-                break;
-            case 7:
-                if (saveSharpOrFlat == 1) {
-                    saveNoteName2 = "C sharp";
-                } else {
-                    saveNoteName2 = "D flat";
-                }
-                break;
-            case 8:
-                saveNoteName2 = "D";
-                break;
-            case 9:
-                if (saveSharpOrFlat == 1) {
-                    saveNoteName2 = "D sharp";
-                } else {
-                    saveNoteName2 = "E flat";
-                }
-                break;
-            case 10:
-                saveNoteName2 = "E";
-                break;
-            case 11:
-                saveNoteName2 = "F";
-                break;
-            case 12:
-                if (saveSharpOrFlat == 1) {
-                    saveNoteName2 = "F sharp";
-                } else {
-                    saveNoteName2 = "G flat";
-                }
-                break;
-        }
+        String saveNoteName2 = getAnswerAsAString(saveNoteName); //gets the answer as a string
         wrongAnswers++; //keeps track for the view score method
         numOfExercises++;
         for (int i = 0; i < 17; i++) {
@@ -1058,9 +1005,9 @@ public class Notes extends JFrame {
         nextExercise();
     }
     public void nextExercise() { //creates a button that says next exercise and disposes the old frame, so a new one can load with a new question
-         tellMe.setVisible(false);
-         
-         nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
+        tellMe.setVisible(false); //tell me is set visible as false to avoid any problems with the previous note playing alongside the next note
+
+        nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
         nextExercise.setBounds(300, 410, 300, 90);
         nextExercise.setFocusable(false);
         nextExercise.setBackground(Color.white);
