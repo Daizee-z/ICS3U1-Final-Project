@@ -4,8 +4,6 @@ package org.example; //COMMENTS ARE DONE AND PRINTLN ARE GONE -- Notes comments 
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -18,7 +16,7 @@ public class Notes extends JFrame {
     ImageIcon wholeNoteTC = new ImageIcon("src/wholeNoteTC.png");
     JLabel wholeNoteTC2 = new JLabel(wholeNoteTC), correctMessage = new JLabel("Correct!"), incorrectAnswer, correctAnswer;
     JFrame frame = new JFrame();
-    JButton viewScore = new JButton("View Score"), tellMe = new JButton("Tell Me"), nextExercise = new JButton("Next Exercise");;
+    JButton viewScore = new JButton("View Score"), tellMe = new JButton("Tell Me"), nextExercise = new JButton("Next Exercise");
     JButton c = new JButton("C"), cSharp = new JButton("#"), dFlat = new JButton("♭"), d = new JButton("D"), dSharp = new JButton("#"), eFlat = new JButton("♭"), e = new JButton("E"), f = new JButton("F"), fSharp = new JButton("#"), gFlat = new JButton("♭"), g = new JButton("G"), gSharp = new JButton("#"), aFlat = new JButton("♭"), a = new JButton("A"), aSharp = new JButton("#"), bFlat = new JButton("♭"), b = new JButton("B");
     JButton[] notes = {c, cSharp, dFlat, d, dSharp, eFlat, e, f, fSharp, gFlat, g, gSharp, aFlat, a, aSharp, bFlat, b};
     String saveNoteName2, usersAnswer;
@@ -84,7 +82,7 @@ public class Notes extends JFrame {
         dFlat.setBounds(190, 516, 90, 78);
         dFlat.setFocusable(false);
         dFlat.setBackground(Color.white);
-        dFlat.addActionListener(e -> {;
+        dFlat.addActionListener(e -> {
             usersAnswer = "D flat";
             if (saveNoteName == 7 && saveSharpOrFlat == 2) {
                 correct();
@@ -409,12 +407,9 @@ public class Notes extends JFrame {
         earTraining.setFocusable(false);
         earTraining.setBackground(Color.white);
         earTraining.setBounds(300, 410, 300, 90);
-        earTraining.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new EarTraining();
-            }
+        earTraining.addActionListener(e -> {
+            frame.dispose();
+            new EarTraining();
         });
 
         frame.add(earTraining);
