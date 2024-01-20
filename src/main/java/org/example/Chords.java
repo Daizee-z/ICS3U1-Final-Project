@@ -2,8 +2,6 @@ package org.example;  //COMMENTS ARE IN AND PRINTLNS ARE OUT
 import javax.sound.sampled.*; //there is one combo that break it  augmented chord B in bass clef
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Random;
 
@@ -38,7 +36,7 @@ String userAnswer;
         diminished.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
         diminished.setBounds(75, 330, 168, 100);
         diminished.addActionListener(e -> {
-            userAnswer = "diminished"; //user answer will be used if they get it wrong
+            userAnswer = "diminished"; //user answer will be displayed if they get it wrong
             checkAnswer(1);
         });
 
@@ -109,13 +107,7 @@ String userAnswer;
             chords[i].setVisible(false);
         }
 
-        String chordQuality2 = switch (chordQuality) { //gets the answer in a string
-            case 1 -> "diminished";
-            case 2 -> "minor";
-            case 3 -> "major";
-            case 4 -> "augmented";
-            default -> "";
-        };
+        String chordQuality2 = getChordQuality(); //gets the chord quality as a string
 
         //displays answer to the user
         JLabel giveUpCorrectAnswer = new JLabel("Correct Answer: " + chordQuality2);
@@ -182,14 +174,15 @@ String userAnswer;
 
     private void checkAnswer(int button) { //button is the users answer which is represented by a number
         if(button != chordQuality) { //if they are wrong
-            String chordQuality2 = getChordQuality();
-            numOfIncorrectAnswers++;
+            String chordQuality2 = getChordQuality(); //gets answer as a string
+            numOfIncorrectAnswers++;  //updates the stats for view score
             numOfExercises++;
-            viewScore.setVisible(false);
+            viewScore.setVisible(false); //makes room for the answer by setting buttons and labels visible to false
             tellMe.setVisible(false);
             for (int i = 0; i < 4; i++) {
                 chords[i].setVisible(false);
             }
+
             incorrectAnswer = new JLabel("incorrect answer: " + userAnswer);
             incorrectAnswer.setFont(new Font("Rockwell", Font.PLAIN, 20));
             incorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -263,8 +256,8 @@ String userAnswer;
        3 = major
        4 = augmented*/
 
-       if (chordQuality == 1) { //assigns the correct amt of semitones to create the chord
-           thirdsSemitone = 3;
+       if (chordQuality == 1) { //assigns the correct amt of semitones to create the chord. A semitone is a half step, the smallest interval and is the note right next to your reference note. Can be a black or white key.
+           thirdsSemitone = 3; //each chord quality is made up of a set of different intervals, and each interval has a different amount of semitones. here I am assign the number of semitones to the variables
            fifthsSemitone = 6;
        } else if (chordQuality == 2) {
            thirdsSemitone = 3;
@@ -279,12 +272,12 @@ String userAnswer;
 
        saveRoot = root; //saves the root as it could be changed in the following if statement
 
-       if(root == 2 || root == 4 || root == 8 || root == 10 || root == 12) { //black keys
+       if(root == 2 || root == 4 || root == 8 || root == 10 || root == 12) { //black keys can be a flat or a sharp. The computer is going to choose which one
            int sharpOrFlat = rand.nextInt(1, 3);
            if(sharpOrFlat == 1) { //sharp
                root -= 1;
            } else if(sharpOrFlat == 2) { //flat
-               if(root == 12) {
+               if(root == 12) { //an F# in sound but since this is a flat, it will have to be written as a G, so the root is equal to 1 here
                    root = 1;
                } else {
                    root += 1;
@@ -293,7 +286,7 @@ String userAnswer;
        }
 
         rootName = switch(root) { //this ensures that the chord is indeed made up of thirds and fifths since intervals are relative
-            case 1 -> 1;
+            case 1 -> 1;  //root name basically gets the letter of the note. eg. Gb: rootName = G (1), D#: rootName = D (5)
             case 3 -> 2;
             case 5 -> 3;
             case 6 -> 4;
@@ -315,7 +308,8 @@ String userAnswer;
         6 = E
         7 = F
          */
-        if(absoluteFifthNote > 7) { //if it is greater than a 7 (F) then it subtracts 7 so it restarts at G
+
+        if(absoluteFifthNote > 7) { //if an absolute note is greater than a 7 (F) then it subtracts 7, so it restarts at G
             absoluteFifthNote -= 7;
         }
 
@@ -323,21 +317,21 @@ String userAnswer;
             absoluteThirdNote -= 7;
         }
 
-        thirdNoteOctave = octave; //set the octaves as the same to begin with
+        thirdNoteOctave = octave; //set each note octave to octave as a starting point
         fifthNoteOctave = octave;
 
-        third = saveRoot + thirdsSemitone; //getting the notename of the third and the fifth. noteName chart is in Notes class
+        third = saveRoot + thirdsSemitone; //adding the number of semitones for each interval gets the notename of the third and the fifth. noteName chart is in Notes class
         fifth = saveRoot + fifthsSemitone;
 
-        if(third > 12) { //if it is greater than noteName 12, then it is in the next octave
+        if(third > 12) { //if the third is greater than noteName 12, then it is in the next octave
             third -= 12;
             thirdNoteOctave++;
         }
 
-        if(fifth > 12) { //similar situation in this
+        if(fifth > 12) { //similar situation in this. if the fifth is greater than noteName 12, then it is in the next octave
             fifth -= 12;
             fifthNoteOctave++;
-        }
+        } //Note that these if statements have to be separate because your fifth and your third do not always have to be in the same octave, so you have to check for them individually
 
         //this if statement ensure that the full chord stays on the treble clef
         if(thirdNoteOctave == 4 || fifthNoteOctave == 4) { //I have no 4th octave, so I move the chord one octave lower
@@ -346,7 +340,7 @@ String userAnswer;
             fifthNoteOctave--;
         }
         //the following if statement ensure that the chord will not straddle the two clefs -----------------------------------
-        if(octave == 2 && root < 6 && fifthNoteOctave == 2 && fifth > 6) {
+        if(octave == 2 && root < 6 && fifthNoteOctave == 2 && fifth > 6) { //if the root (lowest note in the chord) is in bass clef, and the fifth is in treble clef, it would require 2 clefs, so I move them down an octave. The whole chord is now on bass clef
             octave--;
             thirdNoteOctave--;
             fifthNoteOctave--;
@@ -503,7 +497,7 @@ String userAnswer;
             frame.add(staff);
         }
 
-        //placing notes on the staff
+        //placing the actual whole note on the staff
         if(rootName == 1) { //Gs
             if (octave == 1) {
                 wholeNote2.setBounds(230, 159, 33, 23);
@@ -596,13 +590,13 @@ String userAnswer;
         Clip thirdNote = AudioSystem.getClip();
         Clip fifthNote = AudioSystem.getClip();
 
-        rootNote.stop(); //stopping and closing the clip to fix an error
+        rootNote.stop(); //stopping and closing the clip to prevent an error
         thirdNote.stop();
         fifthNote.stop();
         rootNote.close();
         thirdNote.close();
         fifthNote.close();
-        for(int i = 0; i < 12; i++) { //convert ot audioInputStream arrays
+        for(int i = 0; i < 12; i++) { //convert to audioInputStream arrays
             audioStreamFirstOctave[i] = AudioSystem.getAudioInputStream(firstOctaveNotes[i]);
         }
         for(int i = 0; i < 12; i++) {

@@ -1,13 +1,13 @@
-package org.example; //COMMENTS COMPLETE AND SO ARE THE PRINTLNS
+package org.example; //COMMENTS COMPLETE AND SO ARE THE PRINTLNS and it comments have also been revised
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList; //if you add then remove it does not give back beats?????
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.HashMap; //need to somehow get rid of the jcombobox when you use previous rhythms
+import java.util.HashMap;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showInputDialog;
@@ -19,9 +19,7 @@ public class RhythmCreator extends JFrame {
     JComboBox<String> notesAndRestsComboBox = new JComboBox<>();
     JLabel message = new JLabel(), beatsLeft;
     HashMap<String, String> rhythms = new HashMap<>();
-    ArrayList<String> newRhythmAsArray = new ArrayList<>();
     ArrayList<JLabel> rhythmForUndo = new ArrayList<>();
-    int time = 1;
     JFrame frame = new JFrame();
     JLayeredPane staff = new JLayeredPane();
     int xCoordinateInterval = 73, numOfBarsLeft = 3, halfNoteInterval, quarterNoteInterval, eighthNoteInterval, wholeRestValue, halfRestValue, barNumber = 1;
@@ -44,8 +42,9 @@ public class RhythmCreator extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.white);
 
-        readFromFile();
+        readFromFile(); //sets the keys and values in a hashmap if the user wants to see previous rhythms
 
+        //home button disposes the frame and reopens home screen class
         JButton home = new JButton("home");
         home.setFocusable(false);
         home.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -66,18 +65,13 @@ public class RhythmCreator extends JFrame {
         title.setBounds(251, 80, 398, 100);
         title.setForeground(new Color(0x006874));
 
-
         JLabel timeSignatureLabel = new JLabel("Time Signature:");
         timeSignatureLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         timeSignatureLabel.setBounds(300, 187, 200, 50);
         timeSignatureLabel.setForeground(new Color(0x006874));
 
-        notesAndRestsLabel.setBounds(280, 200, 166, 30);
-        notesAndRestsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        notesAndRestsLabel.setForeground(new Color(0x4a6267));
-
-        String[] timeSignatureChoices = {"", "2/4", "4/4"};
-        JComboBox<String> timeSignatures = new JComboBox<>(timeSignatureChoices);
+        String[] timeSignatureChoices = {"", "2/4", "4/4"}; //string array for the JComboBox with index 0 being "" so the the combobox looks empty
+        JComboBox<String> timeSignatures = new JComboBox<>(timeSignatureChoices); //putting the string array into the jcombobox
         timeSignatures.setBackground(Color.white);
         timeSignatures.setBounds(475, 200, 125, 25);
 
@@ -91,21 +85,21 @@ public class RhythmCreator extends JFrame {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (timeSignatures.getSelectedItem() == "") {
+                if (timeSignatures.getSelectedItem() == "") { //they need to have selected a time signature
                     return;
                 }
 
-                rhythmCreatorButton.setVisible(true);
+                rhythmCreatorButton.setVisible(true); //setting these buttons and labels visible to true and false in order to create the next display
+                notesAndRestsLabel.setVisible(true);
                 home.setVisible(false);
                 previousRhythms.setVisible(false);
-                notesAndRestsLabel.setVisible(true);
                 timeSignatureLabel.setVisible(false);
                 timeSignatures.setVisible(false);
                 continueButton.setVisible(false);
                 title.setVisible(false);
                 if (timeSignatures.getSelectedItem() == "2/4") {
-                    newRhythm = "2/4";
-                    setStaff("2/4", 0);
+                    newRhythm = "2/4"; //adds the time signature to the string. newRhythm variable is where the rhythm is being recorded
+                    setStaff("2/4", 0); //goes to setStaff method to set the staff and passes in the time signature, as well as whereIsThisFrom. whereIsThisFrom: 0 = rhythm being created the user, 1 = rhythm retrieved from the txt file
                 } else if (timeSignatures.getSelectedItem() == "4/4") {
                     newRhythm = "4/4";
                     setStaff("4/4", 0);
@@ -113,25 +107,29 @@ public class RhythmCreator extends JFrame {
             }
         });
 
+        notesAndRestsLabel.setBounds(280, 200, 166, 30);
+        notesAndRestsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        notesAndRestsLabel.setForeground(new Color(0x4a6267));
+
         //next few things are set visible to false until the user clicks on previous rhythms------------------------------
-        JTextArea rhythmList = new JTextArea();
+        JTextArea rhythmList = new JTextArea(); //provides the user with the list of previous rhythms they can view
         rhythmList.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         rhythmList.setBounds(300, 100, 400, 200);
         rhythmList.setEditable(false);
         rhythmList.setVisible(false);
 
         JLabel typeInYourRhythmNameLabel = new JLabel("Type in the name of the rhythm you want");
-        typeInYourRhythmNameLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        typeInYourRhythmNameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         typeInYourRhythmNameLabel.setVisible(false);
         typeInYourRhythmNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         typeInYourRhythmNameLabel.setBounds(250, 350, 400, 40);
 
-        chooseYourRhythm = new JTextField();
+        chooseYourRhythm = new JTextField();  //where the user types in the name of the rhythm they want to view
         chooseYourRhythm.setBounds(250, 400, 400, 30);
         chooseYourRhythm.setVisible(false);
         chooseYourRhythm.setEditable(true);
 
-        previousRhythms.setFocusable(false);
+        previousRhythms.setFocusable(false); //JButton
         previousRhythms.setBounds(75, 400, 150, 60);
         previousRhythms.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         previousRhythms.setBackground(new Color(0xcde7ec));
@@ -140,26 +138,26 @@ public class RhythmCreator extends JFrame {
         previousRhythms.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] rhythmsFromFile = readFromFile(); //figure this out later -- probs gonna need to extract the add button stuff into a method so that I can call it and reuse the code
+                rhythmList.setVisible(true); //setting buttons and labels to true and false to create the next display
+                chooseYourRhythm.setVisible(true);
+                typeInYourRhythmNameLabel.setVisible(true);
                 rhythmCreatorButton.setVisible(true);
                 next.setVisible(false);
                 timeSignatureLabel.setVisible(false);
                 timeSignatures.setVisible(false);
                 continueButton.setVisible(false);
                 title.setVisible(false);
-                rhythmList.setVisible(true);
-                chooseYourRhythm.setVisible(true);
-                typeInYourRhythmNameLabel.setVisible(true);
                 next.setVisible(true);
                 String temp = "";
-                for (String key : rhythms.keySet()) {
+                for (String key : rhythms.keySet()) {  //places all the keys from the hashmap to a string
                     temp += key + "\n";
                 }
-                rhythmList.setText(temp);
-                previousRhythms.setVisible(false);
+                rhythmList.setText(temp); //presents the temp string onto the rhythm list text area for the user to see
+                previousRhythms.setVisible(false); //set the previousRhythms JButton visible to false so the user cannot click it again
                 }
         });
 
+        //this JButton allows the user to return to the "starting page" of the rhythm creator by disposing the frame and then reloading the rhythmCreator class
         rhythmCreatorButton.setBounds(75, 100, 150, 60);
         rhythmCreatorButton.setFocusable(false);
         rhythmCreatorButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -175,6 +173,7 @@ public class RhythmCreator extends JFrame {
             }
         });
 
+        //the next JButton is used to view a previously written and saved rhythm
         next.setVisible(false);
         next.setFocusable(false);
         next.setBackground(new Color(0xcde7ec));
@@ -186,25 +185,23 @@ public class RhythmCreator extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                notesAndRestsLabel.setVisible(false);
+                notesAndRestsLabel.setVisible(false); //sets certain labels to false
                 save.setVisible(false);
                 add.setVisible(false);
                 undo.setVisible(false);
-                rhythmList.getText();
-                String[] tempRhythmList = rhythmList.getText().split("\n");
+                String[] tempRhythmList = rhythmList.getText().split("\n"); //get the text from the rhythmList, splits it by each new line and places it in an array
                 for (int i = 0; i < tempRhythmList.length; i++) {
                     if (chooseYourRhythm.getText().equals(tempRhythmList[i])) { //checks if the user typed in the name of a rhythm (case sensitive)
-                        home.setVisible(false); //if they do type in the name of a previous rhythm, all the buttons and labels are removed and the process of putting the notes back on the staff begins
+                        home.setVisible(false); //if they do type in the name of a previous rhythm, all the buttons and labels are removed and the process of putting the notes back on the staff begins. If they don't, nothing happens
                         rhythmList.setVisible(false);
                         previousRhythms.setVisible(false);
                         chooseYourRhythm.setVisible(false);
                         typeInYourRhythmNameLabel.setVisible(false);
                         next.setVisible(false);
                         valueForHashMap = rhythms.get(chooseYourRhythm.getText());
-                        setStaff(rhythms.get(chooseYourRhythm.getText()).substring(0, 3), 1);
+                        setStaff(rhythms.get(chooseYourRhythm.getText()).substring(0, 3), 1); //once again, passing in 1 for whereIsThisFrom signifies that this rhythm is from a previous rhythm and not a newly created one
                     }
                 }
-
             }
         });
 
@@ -250,16 +247,16 @@ public class RhythmCreator extends JFrame {
         barLines4.setBounds(608, 67, 2, 20);
         staff.add(barLines4, Integer.valueOf(1));
 
-        if (timeSignature.equals("2/4")) {
+        if (timeSignature.equals("2/4")) { //placing the time signature image on the staff using a JLabel
             ImageIcon twoFourTime = new ImageIcon("src/24TimeSignature.png");
             JLabel twoFourTime2 = new JLabel(twoFourTime);
             twoFourTime2.setBounds(32, 37, 41, 80);
             staff.add(twoFourTime2, Integer.valueOf(1));
-            beatsInABar = 2;
-            halfNoteInterval = 180; //these intervals are just how much the x-coordinate needs to increase by each time this type of note or rest is added
+            beatsInABar = 2; //this variable is used to help reset the beats in a bar later on
+            halfNoteInterval = 180; //these intervals are just how many pixels the x-coordinate needs to increase by each time this type of note or rest is added
             quarterNoteInterval = 90;
             eighthNoteInterval = 45;
-            wholeRestValue = 2; //the whole rest value changes and does not stay at 4 because you can use whole rest in 2/4 time but not whole note; ironically, you can use a half note in 2/4 time, but not a half rest. Music is complicated :)
+            wholeRestValue = 2; //the whole rest value changes and does not stay at 4 in this case because you can use whole rest in 2/4 time but not whole note; additionally, you can use a half note in 2/4 time, but not a half rest. Music is complicated :)
             halfRestValue = 4; //half rest value is set at 4 but realistically could be set at any number greater than 2 -- this is just so that the user cannot add a half rest in 2/4 time
         } else if (timeSignature.equals("4/4")) {
             ImageIcon fourFourTime = new ImageIcon("src/44TimeSignature.png");
@@ -273,31 +270,31 @@ public class RhythmCreator extends JFrame {
             halfRestValue = 2;
             wholeRestValue = 4; //half rest and whole rest value return to their more commonly accepted values (2 and 4 respectively)
         }
-        beatsLeftPerBar = beatsInABar;
+        beatsLeftPerBar = beatsInABar; //setting the beats left per bar as the number of beats per bar. This will later be displayed in a JLabel and used by the program to ensure that the user does not add too many beats to a bar
 
-        if (whereIsThisFrom == 1) { //whereIsThisFrom integer is used to track where it came from... 1 means it was from a previous rhythm
-            if(beatsLeft != null) {
-                beatsLeft.setText("");
-            }
-            addForReadingFromFile(); //this method puts the notes from the txt file onto the staff
-        }
-
-        String[] notesAndRests = {" ", "eighth note", "eighth rest", "quarter note", "quarter rest", "half note", "half rest", "whole note", "whole rest"};
-        notesAndRestsComboBox = new JComboBox<>(notesAndRests);
-        notesAndRestsComboBox.setBackground(Color.white);
-        notesAndRestsComboBox.setBounds(475, 200, 125, 25);
-
-        beatsLeft = new JLabel();
+        beatsLeft = new JLabel(); //label that tells user how many beats they have remaining in a bar
         beatsLeft.setFont(new Font("Times New Roman", Font.PLAIN, 25));
         beatsLeft.setBounds(380, 250, 230, 30);
         frame.add(beatsLeft);
 
-        message.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        if (whereIsThisFrom == 1) { //whereIsThisFrom integer is used to track where it came from. 1 means it was from a previous rhythm
+            if(beatsLeft != null) {
+                beatsLeft.setText(""); //since I had trouble setting this JLabel visible to false, I just set the text to an empty string so the JLabel seems invisible
+            }
+            addForReadingFromFile(); //this method puts the notes from the txt file onto the staff
+        }
+
+        String[] notesAndRests = {" ", "eighth note", "eighth rest", "quarter note", "quarter rest", "half note", "half rest", "whole note", "whole rest"}; //string array of possible notes and rests for the JComboBox
+        notesAndRestsComboBox = new JComboBox<>(notesAndRests);
+        notesAndRestsComboBox.setBackground(Color.white);
+        notesAndRestsComboBox.setBounds(475, 200, 125, 25);
+
+        message.setFont(new Font("Times New Roman", Font.PLAIN, 20)); //this message label delivers the important message of "this note cannot be added"
         message.setHorizontalAlignment(SwingConstants.CENTER);
         message.setBounds(300, 310, 300, 27);
         frame.add(message);
 
-        rhythmCreatorButton.setBounds(200, 400, 150, 60);
+        rhythmCreatorButton.setBounds(200, 400, 150, 60); //changing the bounds of the button so that it is not in the way of the staff. It does the same thing as the other rhythmCreatorButton
         rhythmCreatorButton.setBackground(new Color(0xcde7ec));
         rhythmCreatorButton.setFocusable(false);
         rhythmCreatorButton.addActionListener(new ActionListener() {
@@ -307,9 +304,8 @@ public class RhythmCreator extends JFrame {
                 new RhythmCreator();
             }
         });
-        frame.add(rhythmCreatorButton);
 
-        //save button to save your new rhyth,
+        //save button to save your new rhythm
         save.setBounds(580, 400, 100, 60);
         save.setFocusable(false);
         save.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -319,17 +315,17 @@ public class RhythmCreator extends JFrame {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (numOfBarsLeft == 0 && beatsLeftPerBar == 0) {
+                if (numOfBarsLeft == 0 && beatsLeftPerBar == 0) { //this is to check if the staff has been filled
                     rhythmName = JOptionPane.showInputDialog(frame, "Please name your new rhythm"); //asks for the user to give their rhythm a name
-                    if(rhythmName != null) { //if they input something the system checks that the name is available. Case sensitive
+                    if(rhythmName != null) { //if they input something, the system checks that the name is available. Case sensitive
                         for (String temp : rhythms.keySet()) {
-                            if (rhythmName.equals(temp)) {
+                            if (rhythmName.equals(temp)) { //if there is already a rhythm under that name, it will show an error message
                                 JOptionPane.showMessageDialog(frame, "There is already a rhythm that exists under that name", "Error", JOptionPane.ERROR_MESSAGE);
                                 return;
                             }
                         }
                         rewriteRhythms();
-                    }
+                    } //and if they don't input anything, nothing happens
                 } else { //if measures are not filled before pressing save
                     JOptionPane.showMessageDialog(frame, "Please fill in all the measures before saving", "saving error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -344,7 +340,7 @@ public class RhythmCreator extends JFrame {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addForNewRhythm();
+                addForNewRhythm();  //goes to the method that adds the notes to the staff that is specifically for when the user creates their own rhythm
             }
         });
 
@@ -360,21 +356,10 @@ public class RhythmCreator extends JFrame {
                     message.setText("no notes to remove");
                     return;
                 }
-                String lastNote = "";
 
-                if (time == 1) { //first time: splits the newRhythm string and puts it in an array. Then the array gets put into an arraylist
-                    newRhythm = newRhythm.substring(0, newRhythm.length() - 3);
-                    String[] tempArray = newRhythm.split("\\s+");
-                    for (String temp : tempArray) {
-                        newRhythmAsArray.add(temp);
-                    }
-                    lastNote = newRhythm.substring(newRhythm.length() - 2); //last note is taken from the last 2 characters of the newRhythm string
-                    time++;
-                } else {
-                    lastNote = newRhythm.substring(newRhythm.length() - 2);
-                    newRhythm = newRhythm.substring(0, newRhythm.length() - 3);
-                }
-                newRhythmAsArray.remove(lastNote);
+                String lastNote = "";
+                lastNote = newRhythm.substring(newRhythm.length() - 2); //the last note is the last 2 characters of the newRhythm string
+                newRhythm = newRhythm.substring(0, newRhythm.length() - 3); //new rhythm string then removes the last 3 characters (2 of which are the actual note/rest, the third character being the space that separates the notes/rests)
 
                 rhythmForUndo.get(rhythmForUndo.size()-1).setVisible(false); //sets the last jlabel visible to false, effectively "removing" the note
                 rhythmForUndo.remove(rhythmForUndo.size()-1); //removes the last jlabel from the arraylist
@@ -419,12 +404,12 @@ public class RhythmCreator extends JFrame {
                     beatsLeftPerBar -= beatsInABar;
                     numOfBarsLeft++;
                     barNumber--;
-                    beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar); //beats left label updates the user
                 }
-                beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar);
+                beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar); //beats left label updates the user
             }
         });
 
+        frame.add(rhythmCreatorButton);
         frame.add(save);
         frame.add(notesAndRestsLabel);
         frame.add(undo);
@@ -434,16 +419,15 @@ public class RhythmCreator extends JFrame {
         frame.repaint();
     }
 
-    private void addForNewRhythm() { //the following 2 methods on adding notes to a bar are virtually the same
-
-        message.setText("");
+    private void addForNewRhythm() { //the following 2 methods on adding notes to a bar are virtually the same, they just did not work when I put them together
+        message.setText(""); //clears the message so that nothing is displayed on it
         if (notesAndRestsComboBox.getSelectedItem() == "eighth note") {
-            if (beatsLeftPerBar - 0.5 < 0) {
-                message.setText("you cannot add an eighth note");
+            if (beatsLeftPerBar - 0.5 < 0) { //checks if there is enough beats left in the bar for this note to exist
+                message.setText("you cannot add an eighth note"); //message tells them they cannot add an eighth note if there isn't enough room for it and returns
                 return;
             }
-            newRhythm += " EN"; //this string keeps track of the rhythm as it is being created
-            eighthNoteWithFlag2 = new JLabel(eighthNoteWithFlag); //next 3 lines add the note
+            newRhythm += " EN"; //this string keeps track of the rhythm as it is being created. The space is added for readability
+            eighthNoteWithFlag2 = new JLabel(eighthNoteWithFlag); //next 3 lines add the note onto the staff
             eighthNoteWithFlag2.setBounds(xCoordinateInterval, 41, 22, 40);
             staff.add(eighthNoteWithFlag2, Integer.valueOf(2));
             rhythmForUndo.add(eighthNoteWithFlag2); //label is then added to the rhythmForUndo arraylist in case the user ever wants to delete it
@@ -535,18 +519,17 @@ public class RhythmCreator extends JFrame {
             xCoordinateInterval += 180;
         }
 
-            beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar);
-
         if (barNumber == 4 && beatsLeftPerBar == 0) { //this is a completed rhythm w/ 4 full measures
             beatsLeft.setText("No more beats left!");
         }
-
 
         if (beatsLeftPerBar == 0 && numOfBarsLeft > 0) { //this is the same as one of the if statements in the method above. It just resets the beatsLeftPerBar at beatsPerBar if there are still empty bars
             beatsLeftPerBar = beatsInABar;
             numOfBarsLeft--;
             barNumber++;
         }
+
+        beatsLeft.setText("Beats left in bar " + barNumber + ": " + beatsLeftPerBar);
 
     }
 
@@ -555,72 +538,64 @@ public class RhythmCreator extends JFrame {
         while (startIndex < valueForHashMap.length() ) { //hashmap is created in the readFromFile method
             placingNotesOnStaff = valueForHashMap.substring(startIndex, endingIndex); //placingNotesOnStaff holds the next note that needs to be put onto the staff
 
-            message.setText("");
-            if (beatsLeft != null) {
+            message.setText(""); //ensures no message is on the screen, making it seem that this label is invisible, same goes for beatsLeft label
+            if (beatsLeft != null) { //!= null is to avoid any errors and crashing of the program
                 beatsLeft.setText("");
             }
 
             if (placingNotesOnStaff.equals("EN")) { //chain of if statements add the note onto the staff
-                newRhythm += " EN"; //not necessarily a new rhythm but keeps track of it nonetheless
                 eighthNoteWithFlag2 = new JLabel(eighthNoteWithFlag);
                 eighthNoteWithFlag2.setBounds(xCoordinateInterval, 41, 22, 40);
                 staff.add(eighthNoteWithFlag2, Integer.valueOf(2));
                 xCoordinateInterval += eighthNoteInterval; //adds a certain number of pixels so the x-coordinate of the next note is correctly spaced
             } else if (placingNotesOnStaff.equals("ER")) {
-                newRhythm += " ER";
                 eighthRest2 = new JLabel(eighthRest);
                 eighthRest2.setBounds(xCoordinateInterval, 73, 9, 13);
                 staff.add(eighthRest2, Integer.valueOf(2));
                 xCoordinateInterval += eighthNoteInterval;
             } else if (placingNotesOnStaff.equals("QN")) {
-                newRhythm += " QN";
                 quarterNote2 = new JLabel(quarterNote);
                 quarterNote2.setBounds(xCoordinateInterval, 41, 15, 40);
                 staff.add(quarterNote2, Integer.valueOf(2));
                 xCoordinateInterval += quarterNoteInterval;
             } else if (placingNotesOnStaff.equals("QR")) {
-                newRhythm += " QR";
                 quarterRest2 = new JLabel(quarterRest);
                 quarterRest2.setBounds(xCoordinateInterval, 54, 13, 40);
                 staff.add(quarterRest2, Integer.valueOf(2));
                 xCoordinateInterval += quarterNoteInterval;
             } else if (placingNotesOnStaff.equals("HN")) {
-                newRhythm += " HN";
                 halfNote2 = new JLabel(halfNote);
                 halfNote2.setBounds(xCoordinateInterval, 41, 15, 40);
                 staff.add(halfNote2, Integer.valueOf(2));
                 xCoordinateInterval += halfNoteInterval;
             } else if (placingNotesOnStaff.equals("HR")) {
-                newRhythm += " HR";
                 halfRest2 = new JLabel(halfRest);
                 halfRest2.setBounds(xCoordinateInterval, 68, 30, 10);
                 staff.add(halfRest2, Integer.valueOf(2));
                 xCoordinateInterval += halfNoteInterval;
             } else if (placingNotesOnStaff.equals("WN")) { //note that this whole note and whole rests will not be available should the time signature be 2/4
-                newRhythm += " WN";
                 wholeNote2 = new JLabel(wholeNote);
                 wholeNote2.setBounds(xCoordinateInterval, 71, 15, 10);
                 staff.add(wholeNote2, Integer.valueOf(2));
                 xCoordinateInterval += 180;
             } else if (placingNotesOnStaff.equals("WR")) {
-                newRhythm += " WR";
                 wholeRest2 = new JLabel(wholeRest);
                 wholeRest2.setBounds(xCoordinateInterval, 66, 30, 10); //whole rest is supposed to hang off the second line so my y-coordinate was intentional
                 staff.add(wholeRest2, Integer.valueOf(2));
                 xCoordinateInterval += 180;
             }
 
-            startIndex += 3; //adds 3 so that it gets the next note in the key of the hashmap
+            startIndex += 3; //adds 3 so that it gets the next note in the value of the hashmap
             endingIndex += 3;
         }
     }
 
 
 
-    private String[] readFromFile () { //self explanatory again. reads from the file and stores the info in a hashmap
+    private String[] readFromFile () { //reads from the file and stores the info in a hashmap
         /* FILE FORMAT
         Rhythm'sName
-        timeSignature  *space* Note/rest  *space* Note/rest, etc.
+        timeSignature*space*Note/rest*space*Note/rest, etc.
          */
 
             try {
@@ -642,7 +617,7 @@ public class RhythmCreator extends JFrame {
 
             int i = 0, j = 1;
             while (i < rhythmAsAnArray.length && j < rhythmAsAnArray.length) { //odd numbers are the keys, even numbers are the values of the hashmap
-                tempKeyForHashMap = rhythmAsAnArray[i];
+                tempKeyForHashMap = rhythmAsAnArray[i]; //creates a hashmap from the rhythmAsAnArray array
 
                 tempValueForHashMapAsAString = rhythmAsAnArray[j];
                 rhythms.put(tempKeyForHashMap, tempValueForHashMapAsAString);

@@ -15,7 +15,6 @@ public class EarTraining extends JFrame{
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
 
-
         // creating the logo
         ImageIcon musicNotes = new ImageIcon("src/musicNote.png");
         JLabel logo = new JLabel(musicNotes);
