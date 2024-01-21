@@ -1,4 +1,5 @@
-package org.example; //COMMENTED AND REMOVED PRINTLNS
+package org.example;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -354,7 +355,7 @@ public class Intervals extends JFrame {
         earTraining.setForeground(new Color(0x5954a8));
         earTraining.setBackground(Color.WHITE);
         earTraining.addActionListener(e -> {
-            frame.dispose(); //disposes the frame and opens Ear Training
+            frame.dispose(); //this button disposes the frame and opens Ear Training
             new EarTraining();
         });
 
@@ -423,7 +424,7 @@ public class Intervals extends JFrame {
     }
 
     private void nextExercise() {
-        tellMe.setVisible(false); //sets the tell me button visible to false since pressing tell me would mess up the next interval
+        tellMe.setVisible(false); //sets the tell me button visible to false since pressing tell me would mess up the audio of the next interval
         nextExercise.setFont(new Font("Georgia", Font.PLAIN, 25));
         nextExercise.setBackground(Color.white);
         nextExercise.setBounds(300, 410, 300, 90);
@@ -439,7 +440,7 @@ public class Intervals extends JFrame {
     }
 
     public void chooseInterval() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        noOfSemitones = switch (interval) { //number of semitones helps place the next note since the interval does not correspond to the number of semitones
+        noOfSemitones = switch (interval) { //number of semitones helps place the next note since the interval does not correspond to the number of semitones. **semitones are the smallest musical interval and each interval has a certain number of semitones**
             case 1 -> //minor 2
                     1;
             case 2 -> //major 2
@@ -465,21 +466,26 @@ public class Intervals extends JFrame {
             default -> noOfSemitones;
         };
 
-        secondNote = bassNote + noOfSemitones; //gets note name of the second note. Refer to notes for the full list
-        secondNoteOctave = octave;
+        secondNote = bassNote + noOfSemitones; //gets note name of the second note. Refer to notes class for the full list of note names
+        secondNoteOctave = octave; //setting the secondNoteOctave int to the same as octave as a start
         if (secondNote > 12) {
             secondNote -= 12; //note names only go up until 12 so it has to reset and adds another octave
             secondNoteOctave = octave + 1;
-            if (secondNoteOctave > 3) { //octave cannot be greater than 3 or else it will be off the staff, so I move it down
+            if (secondNoteOctave > 3) { //octave cannot be greater than 3 or else it will be off the staff, so I move the whole interval down one octave
                 octave--;
                 secondNoteOctave--;
             }
         }
-        if (octave == 2 && bassNote < 7 && secondNote >= 7 || octave == 2 && bassNote < 7 && secondNote < 7 && secondNoteOctave == 3) { // has to stay on one clef, and going up from c just doesn't work in bass clef
+        //if statement translated into english: if (the bassNote is from G - C in octave 2 and the secondNote is from C# - F# in octave 2 || the bassNote is from G - C in octave 2 and the second note is from G - C in octave 3)
+        //eg. for first part of if statement: interval: major 7. bassNote: G3 (in bass clef, octave 2, bassNote 1) secondNote: F#4 (in treble clef, octave 2, secondNote 12) || interval: major 6. bassNote: B3 (in bass clef, octave 2, bassNote 5) secondNote: G#4 (in treble clef, octave 3, secondNote 2)
+        if (octave == 2 && bassNote < 7 && secondNote >= 7 || octave == 2 && bassNote < 7 && secondNote < 7 && secondNoteOctave == 3) { //they have to stay on one clef, so if they are between clefs, I move them down an octave to fit on just bass clef
             octave--;
-            secondNoteOctave--; //moving them all down an octave so they fit on one staff
+            secondNoteOctave--;
         }
-        if (octave == 1 && bassNote >= 7 && bassNote <= 12 && secondNote > 6 && secondNoteOctave == 2) { //straddles the 2 clefs so it moves the interval up an octave
+
+        //if statement translated into english: if (the bassNote is from C - F# in octave 1 and the secondNote is between C - F# in octave 2)
+        //eg. interval: major 6. bassNote: F3 (11) (octave 1) secondNote: D4 (8) (octave 2) this is between octaves but cannot be moved down since I do not have F2
+        if (octave == 1 && bassNote >= 7 && bassNote <= 12 && secondNote > 6 && secondNoteOctave == 2) { //straddles the 2 clefs but it cannot be moved down an octave like the other if statements since I do not have C2 - F#2 so it moves the interval up an octave
             octave++;
             secondNoteOctave++;
         }
@@ -545,7 +551,7 @@ public class Intervals extends JFrame {
             wholeNote2.setBounds(230, 159, 33, 23);
             staff.add(wholeNote2, Integer.valueOf(1));
             if(sharp == 1) {
-                bassNote = 2; //Gb cannot exist in this octave
+                bassNote = 2; //Gb does not exist in this octave
             } else { //else is there to ensure the correct number is passed in
                 bassNote = 1;
             }
@@ -555,13 +561,13 @@ public class Intervals extends JFrame {
             staff.add(wholeNote2, Integer.valueOf(1));
             if(sharp == 1) {
                 bassNote = 2;
-            } else if (flat == 1) {
+            } else if (flat == 1) { //Gb is technically an F# and therefore has the bassNote of 12 and play the note from the octave below it
                 bassNote = 12;
             } else {
                 bassNote = 1;
             }
             if(bassNote == 12) {
-                octave1NotesIntervals(12);
+                octave1NotesIntervals(12); //explanation on why this is octae1NoteIntervals instead of octave 2 is on line 563
             } else {
                 octave2NotesIntervals(bassNote);
             }
@@ -827,10 +833,10 @@ public class Intervals extends JFrame {
         File f5 = new File("src/f5.wav");
         File fSharp5 = new File("src/fSharp5.wav");
 
-        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5}; //putting the files into an array so that it's easier to make them an audioStream
+        File[] thirdOctaveNotes = {g4, gSharp4, a4, aSharp4, b4, c5, cSharp5, d5, dSharp5, e5, f5, fSharp5}; //putting the files into an array so that it's easier to get audioInputStream
         AudioInputStream[] audioStream = new AudioInputStream[12];
 
-        for(int i = 0; i < 12; i++) { //getting the audio input stream
+        for(int i = 0; i < 12; i++) { //getting the audio input stream using a for loop
             audioStream[i] = AudioSystem.getAudioInputStream(thirdOctaveNotes[i]);
         }
 
@@ -929,7 +935,7 @@ public class Intervals extends JFrame {
     }
 
     public void playSecondNote() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        switch(saveTopNote) { //redirects saveTopNote to its method to play the second note, passing in the bass note
+        switch(saveTopNote) { //redirects saveTopNote to its method to play the second note, passing in the top note. It's named as the bassNote but it is the topNote this time
             case 1: //all for Gs
                 if (saveSecondNoteOctave == 2) { //there is no perfect 1 in my program so save second octave will not be in octave 1
                     octave2NotesIntervals(1);
@@ -1041,6 +1047,7 @@ public class Intervals extends JFrame {
 
     public void choosingSharpOrFlatBassNote(int octave, int bassNote) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         int sharpOrFlat = rand.nextInt(1, 3); //random int for sharp or flat for the bass note and places the sharp or flat symbol on the correct line. 1 = sharp, 2 = flat
+        //setting bounds for all the sharps and flats then redirect them back to the method that places the whole note
         if (sharpOrFlat == 1) { //sharp
             switch (bassNote) {
                 case 2: //G#

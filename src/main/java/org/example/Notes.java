@@ -1,5 +1,4 @@
-package org.example; //COMMENTS ARE DONE AND PRINTLN ARE GONE -- Notes comments have also been revised
-
+package org.example;
 
 import javax.sound.sampled.*;
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package org.example; //COMMENTS COMPLETE AND SO ARE THE PRINTLNS and it comments have also been revised
+package org.example;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

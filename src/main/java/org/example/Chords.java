@@ -1,5 +1,5 @@
-package org.example;  //COMMENTS ARE IN AND PRINTLNS ARE OUT
-import javax.sound.sampled.*; //there is one combo that break it  augmented chord B in bass clef
+package org.example;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -606,7 +606,7 @@ String userAnswer;
             audioStreamThirdOctave[i] = AudioSystem.getAudioInputStream(thirdOctaveNotes[i]);
         }
 
-        if(saveRoot == 12 && root == 1) { //for the Gb that have a saveRoot of 12, but need to play the Gb from the octave below it
+        if(saveRoot == 12 && root == 1) { //Gb's have a saveRoot of 12, but need to play the Gb from the octave below it, so I subtract an octave
             octave--;
         }
 

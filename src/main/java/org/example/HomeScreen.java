@@ -1,4 +1,4 @@
-package org.example;  //ALL DONE
+package org.example;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
